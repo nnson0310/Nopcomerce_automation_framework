@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Nopcommerce testsuite" parallel="tests" thread-count="3">
+    <listeners>
+        <listener class-name="reportconfig.MethodListener"></listener>
+        <listener class-name="commons.RetryListener"/>
+        <listener class-name="reportconfig.ExtentTestListener"/>
+    </listeners>
+    <parameter name="userSiteUrl" value="https://demo.nopcommerce.com/"></parameter>
+    <parameter name="adminSiteUrl" value="https://admin-demo.nopcommerce.com/"></parameter>
+
+    <test name="Firefox" description="Run on firefox">
+        <parameter name="browserName" value="firefox"></parameter>
+        <parameter name="browserVersion" value="latest"></parameter>
+        <parameter name="environmentName" value="local"></parameter>
+        <parameter name="ipAddress" value="localhost"></parameter>
+        <parameter name="port" value="4444"></parameter>
+        <parameter name="platform" value="Windows 10"></parameter>
+        <classes>
+            <class name="user.Register"></class>
+        </classes>
+    </test>
+</suite>
