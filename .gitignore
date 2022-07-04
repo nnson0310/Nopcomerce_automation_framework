@@ -2,6 +2,8 @@
 target/
 test-output/
 browserLogs/
+extentReport/
+scriptLogs/
 src/test/resources/cloud_credentials.properties
 pom.xml.tag
 pom.xml.releaseBackup
