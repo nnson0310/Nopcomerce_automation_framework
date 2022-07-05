@@ -23,4 +23,9 @@ public class UserHomePage extends BasePage {
         clickToElement(driver, UserHomePageUI.REGISTER_HEADER_LINK);
         return PageGeneratorManager.getPageGeneratorManager().getUserRegisterPage(driver);
     }
+
+    public boolean isMyAccountHeaderLinkDisplayed(WebDriver driver) {
+        waitForElementVisible(driver, UserHomePageUI.MY_ACCOUNT_HEADER_LINK);
+        return isElementDisplayed(driver, UserHomePageUI.MY_ACCOUNT_HEADER_LINK);
+    }
 }
