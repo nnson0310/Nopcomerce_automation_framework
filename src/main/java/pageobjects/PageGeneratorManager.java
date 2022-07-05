@@ -16,4 +16,20 @@ public class PageGeneratorManager {
         }
         return pageGeneratorManager;
     }
+
+    public UserHomePage getUserHomePage(WebDriver driver) {
+        return new UserHomePage(driver);
+    }
+
+    public UserLoginPage getLoginHomePage(WebDriver driver) {
+        return new UserLoginPage(driver);
+    }
+
+    public UserRegisterPage getUserRegisterPage(WebDriver driver) {
+        return new UserRegisterPage(driver);
+    }
+
+    public UserRegisterResultPage getUserRegisterResultPage(WebDriver driver) {
+        return new UserRegisterResultPage(driver);
+    }
 }
