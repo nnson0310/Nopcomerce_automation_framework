@@ -1,4 +1,4 @@
-package pageinterfaces;
+package pageinterfaces.user;
 
 public abstract class UserRegisterPageUI {
     public static final String REGISTER_BUTTON = "css=button#register-button";

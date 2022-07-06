@@ -1,8 +1,9 @@
-package pageobjects;
+package pageobjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageinterfaces.UserHomePageUI;
+import pageinterfaces.user.UserHomePageUI;
+import pageobjects.PageGeneratorManager;
 
 public class UserHomePage extends BasePage {
 
@@ -27,5 +28,11 @@ public class UserHomePage extends BasePage {
     public boolean isMyAccountHeaderLinkDisplayed(WebDriver driver) {
         waitForElementVisible(driver, UserHomePageUI.MY_ACCOUNT_HEADER_LINK);
         return isElementDisplayed(driver, UserHomePageUI.MY_ACCOUNT_HEADER_LINK);
+    }
+
+    public MyAccountPage clickToMyAccountLink(WebDriver driver) {
+        waitForElementClickable(driver, UserHomePageUI.MY_ACCOUNT_HEADER_LINK);
+        clickToElement(driver, UserHomePageUI.MY_ACCOUNT_HEADER_LINK);
+        return PageGeneratorManager.getPageGeneratorManager().getMyAccountPage(driver);
     }
 }
