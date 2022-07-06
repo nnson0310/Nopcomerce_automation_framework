@@ -8,7 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageinterfaces.CommonUI;
+import pageinterfaces.user.SearchPageUI;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -278,6 +280,23 @@ public abstract class BasePage {
         return getElement(driver, getDynamicXpath(locator, dynamicValues)).getText();
     }
 
+    protected List<String> getElementsText(WebDriver driver, String locator) {
+        List<WebElement> elements = getElements(driver, locator);
+        List<String> elementsText = new ArrayList<String>();
+        elements.forEach((element) -> {
+            elementsText.add(element.getText());
+        });
+        return elementsText;
+    }
+
+    protected List<String> getElementsText(WebDriver driver, String locator, String... dynamicValues) {
+        List<WebElement> elements = getElements(driver, getDynamicXpath(locator, dynamicValues));
+        List<String> elementsText = new ArrayList<String>();
+        elements.forEach((element) -> {
+            elementsText.add(element.getText());
+        });
+        return elementsText;
+    }
 
     protected String getCssValue(WebDriver driver, String cssSelector, String locator) {
         return getElement(driver, locator).getCssValue(cssSelector);
@@ -547,5 +566,27 @@ public abstract class BasePage {
     public void clickToDynamicHeaderLink(WebDriver driver, String fieldName) {
         waitForElementClickable(driver, CommonUI.DYNAMIC_HEADER_LINK, fieldName);
         clickToElement(driver, CommonUI.DYNAMIC_HEADER_LINK, fieldName);
+    }
+
+    public void clickToDynamicFooterLink(WebDriver driver, String fieldName) {
+        waitForElementClickable(driver, CommonUI.DYNAMIC_FOOTER_LINK, fieldName);
+        clickToElement(driver, CommonUI.DYNAMIC_FOOTER_LINK, fieldName);
+    }
+
+    /**
+     * Check if search result contains corresponding product names
+     * @param driver Webdriver instance
+     * @param productName name of product name as search keyword
+     * @return boolean value
+     */
+    public boolean isSearchResultDisplayedCorrect(WebDriver driver, String productName) {
+        List<String> productTitles = getElementsText(driver, SearchPageUI.SEARCH_RESULT_TITLE);
+        boolean result = true;
+        for(String productTitle : productTitles) {
+            if (!productTitle.contains(productName)) {
+                result = false;
+            }
+        }
+        return result;
     }
 }
