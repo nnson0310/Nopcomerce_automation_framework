@@ -279,8 +279,12 @@ public abstract class BasePage {
     }
 
 
-    protected String getCssValue(WebDriver driver, String locator, String cssSelector) {
+    protected String getCssValue(WebDriver driver, String cssSelector, String locator) {
         return getElement(driver, locator).getCssValue(cssSelector);
+    }
+
+    protected String getCssValue(WebDriver driver, String cssSelector, String locator, String... dynamicValues) {
+        return getElement(driver, getDynamicXpath(locator, dynamicValues)).getCssValue(cssSelector);
     }
 
     protected String getHexColorFromRgbColor(String rgbaColor) {
@@ -391,6 +395,11 @@ public abstract class BasePage {
     protected void hoverToElement(WebDriver driver, String locator) {
         action = new Actions(driver);
         action.moveToElement(getElement(driver, locator)).perform();
+    }
+
+    protected void hoverToElement(WebDriver driver, String locator, String... dynamicValues) {
+        action = new Actions(driver);
+        action.moveToElement(getElement(driver, getDynamicXpath(locator, dynamicValues))).perform();
     }
 
     protected String getInnerText(WebDriver driver) {
@@ -533,5 +542,10 @@ public abstract class BasePage {
         explicitWait = new WebDriverWait(driver, GlobalConstants.getGlobalConstants().getLongTimeout());
 
         explicitWait.until(ExpectedConditions.invisibilityOfAllElements(getElements(driver, getDynamicXpath(locator, dynamicValues))));
+    }
+
+    public void clickToDynamicHeaderLink(WebDriver driver, String fieldName) {
+        waitForElementClickable(driver, CommonUI.DYNAMIC_HEADER_LINK, fieldName);
+        clickToElement(driver, CommonUI.DYNAMIC_HEADER_LINK, fieldName);
     }
 }

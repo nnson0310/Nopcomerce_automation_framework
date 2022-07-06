@@ -1,4 +1,4 @@
-package pageinterfaces;
+package pageinterfaces.user;
 
 public abstract class UserLoginPageUI {
 

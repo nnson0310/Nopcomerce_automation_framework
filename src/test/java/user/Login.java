@@ -7,8 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pageobjects.PageGeneratorManager;
-import pageobjects.UserHomePage;
-import pageobjects.UserLoginPage;
+import pageobjects.user.UserHomePage;
+import pageobjects.user.UserLoginPage;
 import java.lang.reflect.Method;
 
 import static reportconfig.ExtentTestManager.getTest;

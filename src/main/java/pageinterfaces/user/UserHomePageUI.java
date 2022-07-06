@@ -1,4 +1,4 @@
-package pageinterfaces;
+package pageinterfaces.user;
 
 public abstract class UserHomePageUI {
     public static final String REGISTER_HEADER_LINK = "css=div.header-links a.ico-register";

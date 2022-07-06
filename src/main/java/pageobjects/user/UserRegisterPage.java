@@ -1,8 +1,8 @@
-package pageobjects;
+package pageobjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageinterfaces.UserRegisterPageUI;
+import pageinterfaces.user.UserRegisterPageUI;
 
 public class UserRegisterPage extends BasePage {
     WebDriver driver;

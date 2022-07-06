@@ -7,9 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pageobjects.PageGeneratorManager;
-import pageobjects.UserHomePage;
-import pageobjects.UserRegisterPage;
-import pageobjects.UserRegisterResultPage;
+import pageobjects.user.UserHomePage;
+import pageobjects.user.UserRegisterPage;
+import pageobjects.user.UserRegisterResultPage;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;

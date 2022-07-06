@@ -61,4 +61,19 @@ public final class FunctionHelper {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
         return simpleDateFormat.format(date);
     }
+
+    /**
+     * Get width of product review rating element
+     * @param cssStyleValue a string contains all of css style (ex: width: 80%; height: 70px;...)
+     * @return width value of element (ex: 80% -> return 80)
+     */
+    public static int getProductReviewRatingByWidthValue(String cssStyleValue) {
+        String cssStyleParts[] = cssStyleValue.split(";");
+        String widthValue = "0";
+        for(String cssStylePart : cssStyleParts) {
+            cssStylePart.contains("width");
+            widthValue = cssStylePart.replaceAll("[^0-9]", "");
+        }
+        return Integer.valueOf(widthValue);
+    }
 }
