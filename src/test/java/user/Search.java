@@ -3,6 +3,7 @@ package user;
 import com.aventstack.extentreports.Status;
 import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import pageobjects.PageGeneratorManager;
 import pageobjects.user.*;
@@ -14,7 +15,6 @@ import java.lang.reflect.Method;
 public class Search extends BaseTest {
     WebDriver driver;
 
-    String firstName, lastName, email, password;
     String productName, categoryName;
     int expectedResultNumber;
 
@@ -52,7 +52,7 @@ public class Search extends BaseTest {
         searchPage.clickToSearchButton(driver);
 
         getTest().log(Status.INFO, "TC_01_Empty_Keyword - Step 03: Verify that 'Search term minimum length is 3 characters' error message is displayed");
-        searchPage.isDynamicSearchErrorDisplayed(driver, "Search term minimum length is 3 characters");
+        Assert.assertTrue(searchPage.isDynamicSearchErrorDisplayed(driver, "Search term minimum length is 3 characters"));
     }
 
     @Test(description = "Verify that there is search result corresponding to partial product name search")
@@ -68,7 +68,7 @@ public class Search extends BaseTest {
         searchPage.clickToSearchButton(driver);
 
         getTest().log(Status.INFO, "TC_02_Partial_Product_Name - Step 03: Verify that there are " + expectedResultNumber + " products and all product names contain " + productName);
-        searchPage.isSearchResultCorrect(driver, expectedResultNumber, productName);
+        Assert.assertTrue(searchPage.isSearchResultCorrect(driver, expectedResultNumber, productName));
     }
 
     @Test(description = "Verify that there is search result corresponding to full product name search")
@@ -84,13 +84,13 @@ public class Search extends BaseTest {
         searchPage.clickToSearchButton(driver);
 
         getTest().log(Status.INFO, "TC_03_Full_Product_Name - Step 03: Verify that there are " + expectedResultNumber + " products and all product names contain " + productName);
-        searchPage.isSearchResultCorrect(driver, expectedResultNumber, productName);
+        Assert.assertTrue(searchPage.isSearchResultCorrect(driver, expectedResultNumber, productName));
     }
 
     @Test(description = "Verify that user can conduct advanced search with sub category")
     public void TC_04_Advanced_Search_With_Sub_Category(Method method) {
         expectedResultNumber = 1;
-        productName = "Apple Macbook Pro";
+        productName = "Apple MacBook Pro";
         categoryName = "Computers";
 
         startTest(method.getName(), "TC_04_Advanced_Search_With_Sub_Category - Start test");
@@ -106,11 +106,11 @@ public class Search extends BaseTest {
         getTest().log(Status.INFO, "TC_04_Advanced_Search_With_Sub_Category - Step 04: Click to 'Automatically search sub categories' checkbox");
         searchPage.clickToSearchWithSubCategoryCheckbox(driver);
 
-        getTest().log(Status.INFO, "TC_04_Advanced_Search_With_Sub_Category - Step 02: Click to Search Button");
+        getTest().log(Status.INFO, "TC_04_Advanced_Search_With_Sub_Category - Step 05: Click to Search Button");
         searchPage.clickToSearchButton(driver);
 
-        getTest().log(Status.INFO, "TC_04_Advanced_Search_With_Sub_Category - Step 03: Verify that there are " + expectedResultNumber + " products and all product names contain " + productName);
-        searchPage.isSearchResultCorrect(driver, expectedResultNumber, productName);
+        getTest().log(Status.INFO, "TC_04_Advanced_Search_With_Sub_Category - Step 06: Verify that there are " + expectedResultNumber + " products and all product names contain " + productName);
+        Assert.assertTrue(searchPage.isSearchResultCorrect(driver, expectedResultNumber, productName));
     }
 
     @AfterClass(alwaysRun = true)

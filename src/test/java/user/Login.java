@@ -46,7 +46,7 @@ public class Login extends BaseTest {
         userLoginPage.clickToLoginButton(driver);
 
         getTest().log(Status.INFO, "TC_01_Empty_Email - Step 03: Verify that 'Please enter your email' is displayed");
-        userLoginPage.isDynamicEmailErrorDisplayed(driver, "Please enter your email");
+        Assert.assertTrue(userLoginPage.isDynamicEmailErrorDisplayed(driver, "Please enter your email"));
     }
 
     @Test(
@@ -63,7 +63,7 @@ public class Login extends BaseTest {
         userLoginPage.clickToLoginButton(driver);
 
         getTest().log(Status.INFO, "TC_02_Invalid_Email - Step 03: Verify that 'Wrong email' is displayed");
-        userLoginPage.isDynamicEmailErrorDisplayed(driver, "Wrong email");
+        Assert.assertTrue(userLoginPage.isDynamicEmailErrorDisplayed(driver, "Wrong email"));
     }
 
     @Test(
