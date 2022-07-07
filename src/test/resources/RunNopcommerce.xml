@@ -2,7 +2,7 @@
 <suite name="Nopcommerce testsuite" parallel="tests" thread-count="3">
     <listeners>
         <listener class-name="reportconfig.MethodListener"></listener>
-        <listener class-name="commons.RetryListener"/>
+<!--        <listener class-name="commons.RetryListener"/>-->
         <listener class-name="reportconfig.ExtentTestListener"/>
     </listeners>
     <parameter name="userSiteUrl" value="https://demo.nopcommerce.com/"></parameter>
@@ -16,7 +16,7 @@
         <parameter name="port" value="4444"></parameter>
         <parameter name="platform" value="Windows 10"></parameter>
         <classes>
-            <class name="user.Search"></class>
+            <class name="user.SortAndPaging"></class>
         </classes>
     </test>
 </suite>

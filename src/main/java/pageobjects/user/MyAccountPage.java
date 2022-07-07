@@ -30,14 +30,4 @@ public class MyAccountPage extends BasePage {
         waitForElementClickable(driver, MyAccountPageUI.DYNAMIC_BLOCK_ACCOUNT_NAVIGATION, fieldName);
         clickToElement(driver, MyAccountPageUI.DYNAMIC_BLOCK_ACCOUNT_NAVIGATION, fieldName);
     }
-
-    public void clickToTopMenuSubList(WebDriver driver, String topMenu, String topMenuSubList) {
-        //hover to top menu
-        waitForElementClickable(driver, MyAccountPageUI.DYNAMIC_TOP_MENU, topMenu);
-        hoverToElement(driver, MyAccountPageUI.DYNAMIC_TOP_MENU, topMenu);
-
-        //click to choose top menu sublist
-        waitForElementClickable(driver, MyAccountPageUI.DYNAMIC_TOP_MENU, topMenuSubList);
-        clickToElement(driver, MyAccountPageUI.DYNAMIC_TOP_MENU, topMenuSubList);
-    }
 }

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageinterfaces.CommonUI;
+import pageinterfaces.user.MyAccountPageUI;
 import pageinterfaces.user.SearchPageUI;
 
 import java.util.ArrayList;
@@ -571,6 +572,16 @@ public abstract class BasePage {
     public void clickToDynamicFooterLink(WebDriver driver, String fieldName) {
         waitForElementClickable(driver, CommonUI.DYNAMIC_FOOTER_LINK, fieldName);
         clickToElement(driver, CommonUI.DYNAMIC_FOOTER_LINK, fieldName);
+    }
+
+    public void clickToTopMenuSubList(WebDriver driver, String topMenu, String topMenuSubList) {
+        //hover to top menu
+        waitForElementClickable(driver, CommonUI.DYNAMIC_TOP_MENU, topMenu);
+        hoverToElement(driver, CommonUI.DYNAMIC_TOP_MENU, topMenu);
+
+        //click to choose top menu sublist
+        waitForElementClickable(driver, CommonUI.DYNAMIC_TOP_MENU, topMenuSubList);
+        clickToElement(driver, CommonUI.DYNAMIC_TOP_MENU, topMenuSubList);
     }
 
     /**

@@ -23,6 +23,7 @@
         <extentreport.version>5.0.9</extentreport.version>
         <webdrivermanager.version>4.4.3</webdrivermanager.version>
         <aspectj.version>1.8.10</aspectj.version>
+        <jdbc.version>42.3.3</jdbc.version>
     </properties>
 
     <dependencies>
@@ -30,6 +31,12 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${webdriver.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${jdbc.version}</version>
         </dependency>
 
         <dependency>
