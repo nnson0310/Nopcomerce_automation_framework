@@ -76,4 +76,8 @@ public final class FunctionHelper {
         }
         return Integer.valueOf(widthValue);
     }
+
+    public static String getProductPriceByText(String productPrice) {
+        return productPrice.replace(".00", "").replaceAll("[$,]","");
+    }
 }

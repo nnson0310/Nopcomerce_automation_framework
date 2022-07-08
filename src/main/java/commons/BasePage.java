@@ -457,6 +457,11 @@ public abstract class BasePage {
         jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getElement(driver, locator));
     }
 
+    protected void scrollToElement(WebDriver driver, String locator, String... dynamicValues) {
+        jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getElement(driver, getDynamicXpath(locator, dynamicValues)));
+    }
+
     protected void removeAttributeInDOM(WebDriver driver, String locator, String attributeRemove) {
         jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');", getElement(driver, locator));

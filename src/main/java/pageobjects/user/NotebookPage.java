@@ -4,6 +4,7 @@ import commons.UserBasePage;
 import org.openqa.selenium.WebDriver;
 import pageinterfaces.user.NotebookPageUI;
 import customexception.InvalidSortNameException;
+import utilities.FunctionHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,7 +51,7 @@ public class NotebookPage extends UserBasePage {
         List<String> productPriceTexts = getElementsText(driver, locator);
         productPrices = new ArrayList<>();
         productPriceTexts.forEach((productPriceText) -> {
-            productPrices.add(Integer.parseInt(productPriceText.replace(".00","").replaceAll("[$,]","")));
+            productPrices.add(Integer.parseInt(FunctionHelper.getProductPriceByText(productPriceText)));
         });
         sortedProductPrices = new ArrayList<>(productPrices);
         Collections.sort(sortedProductPrices);
