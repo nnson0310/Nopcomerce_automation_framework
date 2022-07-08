@@ -71,22 +71,22 @@ public class SortAndPaging extends BaseTest {
 
     }
 
-//    @Test(
-//            description = "Verify that product name is sorted from a to z correctly",
-//            dataProvider = "user-sort-paging",
-//            dataProviderClass = UserSortPaging.class
-//    )
-//    public void TC_01_Sort(String sortName, Method method) {
-//
-//        startTest(method.getName(), "TC_01_Name_From_A_To_Z - Start test");
-//        getTest().log(Status.INFO, "TC_01_Name_From_A_To_Z - Step 01: Click to sortName = " + sortName);
-//        notebookPage.selectSortByName(driver, sortName);
-//        FunctionHelper.sleepInSeconds(1);
-//
-//        getTest().log(Status.INFO, "TC_01_Name_From_A_To_Z - Step 02: Verify that product name is sorted correctly");
-//        Assert.assertTrue(notebookPage.isProductSortedCorrectly(driver, sortName));
-//
-//    }
+    @Test(
+            description = "Verify that product name is sorted from a to z correctly",
+            dataProvider = "user-sort-paging",
+            dataProviderClass = UserSortAndPaging.class
+    )
+    public void TC_01_Sort(String sortName, Method method) {
+
+        startTest(method.getName(), "TC_01_Name_From_A_To_Z - Start test");
+        getTest().log(Status.INFO, "TC_01_Name_From_A_To_Z - Step 01: Click to sortName = " + sortName);
+        notebookPage.selectSortByName(driver, sortName);
+        FunctionHelper.sleepInSeconds(1);
+
+        getTest().log(Status.INFO, "TC_01_Name_From_A_To_Z - Step 02: Verify that product name is sorted correctly");
+        Assert.assertTrue(notebookPage.isProductSortedCorrectly(driver, sortName));
+
+    }
 
     @Test(
             description = "Verify that paging feature is correct",

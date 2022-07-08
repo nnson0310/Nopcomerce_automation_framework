@@ -62,4 +62,12 @@ public class PageGeneratorManager {
         return new NotebookPage(driver);
     }
 
+    public WishlistPage getWishlistPage(WebDriver driver) {
+        return new WishlistPage(driver);
+    }
+
+    public ShoppingCartPage getShoppingCartPage(WebDriver driver) {
+        return new ShoppingCartPage(driver);
+    }
+
 }
