@@ -7,9 +7,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageinterfaces.CommonUI;
-import pageinterfaces.user.MyAccountPageUI;
+import pageinterfaces.user.UserCommonUI;
 import pageinterfaces.user.SearchPageUI;
+import pageobjects.PageGeneratorManager;
+import pageobjects.user.UserHomePage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -565,23 +566,23 @@ public abstract class BasePage {
     }
 
     public void clickToDynamicHeaderLink(WebDriver driver, String fieldName) {
-        waitForElementClickable(driver, CommonUI.DYNAMIC_HEADER_LINK, fieldName);
-        clickToElement(driver, CommonUI.DYNAMIC_HEADER_LINK, fieldName);
+        waitForElementClickable(driver, UserCommonUI.DYNAMIC_HEADER_LINK, fieldName);
+        clickToElement(driver, UserCommonUI.DYNAMIC_HEADER_LINK, fieldName);
     }
 
     public void clickToDynamicFooterLink(WebDriver driver, String fieldName) {
-        waitForElementClickable(driver, CommonUI.DYNAMIC_FOOTER_LINK, fieldName);
-        clickToElement(driver, CommonUI.DYNAMIC_FOOTER_LINK, fieldName);
+        waitForElementClickable(driver, UserCommonUI.DYNAMIC_FOOTER_LINK, fieldName);
+        clickToElement(driver, UserCommonUI.DYNAMIC_FOOTER_LINK, fieldName);
     }
 
     public void clickToTopMenuSubList(WebDriver driver, String topMenu, String topMenuSubList) {
         //hover to top menu
-        waitForElementClickable(driver, CommonUI.DYNAMIC_TOP_MENU, topMenu);
-        hoverToElement(driver, CommonUI.DYNAMIC_TOP_MENU, topMenu);
+        waitForElementClickable(driver, UserCommonUI.DYNAMIC_TOP_MENU, topMenu);
+        hoverToElement(driver, UserCommonUI.DYNAMIC_TOP_MENU, topMenu);
 
         //click to choose top menu sublist
-        waitForElementClickable(driver, CommonUI.DYNAMIC_TOP_MENU, topMenuSubList);
-        clickToElement(driver, CommonUI.DYNAMIC_TOP_MENU, topMenuSubList);
+        waitForElementClickable(driver, UserCommonUI.DYNAMIC_TOP_MENU, topMenuSubList);
+        clickToElement(driver, UserCommonUI.DYNAMIC_TOP_MENU, topMenuSubList);
     }
 
     /**
@@ -599,5 +600,21 @@ public abstract class BasePage {
             }
         }
         return result;
+    }
+
+    public void clickToDynamicProductImageLink(WebDriver driver, String productName) {
+        waitForElementClickable(driver, UserCommonUI.DYNAMIC_PRODUCT_IMAGE_LINK, productName);
+        clickToElement(driver, UserCommonUI.DYNAMIC_PRODUCT_IMAGE_LINK, productName);
+    }
+
+    public UserHomePage clickToHeaderLogoLink(WebDriver driver) {
+        waitForElementClickable(driver, UserCommonUI.HEADER_LOGO_LINK);
+        clickToElement(driver, UserCommonUI.HEADER_LOGO_LINK);
+        return PageGeneratorManager.getPageGeneratorManager().getUserHomePage(driver);
+    }
+
+    public String getProductQuantityOfWishlistHeaderLink(WebDriver driver) {
+        waitForElementVisible(driver, UserCommonUI.WISHLIST_HEADER_QUANTITY);
+        return getElementText(driver, UserCommonUI.WISHLIST_HEADER_QUANTITY).replaceAll("[()]","");
     }
 }

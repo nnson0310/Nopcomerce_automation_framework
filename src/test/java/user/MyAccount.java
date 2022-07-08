@@ -89,7 +89,7 @@ public class MyAccount extends BaseTest {
         //test data
         firstNameFieldName = "FirstName";
         lastNameFieldName = "LastName";
-        myAccountHeaderLink = "My account";
+        myAccountHeaderLink = "ico-account";
         myProductReviewNavigation = "My product reviews";
         ratings = new HashMap<String, Integer>();
         ratings.put("Bad", 20);
