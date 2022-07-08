@@ -8,6 +8,13 @@ public class DBConnect {
 
     static Connection conn;
 
+    /**
+     * Create a connection to database (default using PostgresSql)
+     * Change dbUrl variable when using another sql database
+     * @param dbName name of database
+     * @return connection to database URL
+     * @author Son
+     */
     public synchronized static Connection getDBConnection(String dbName) {
         String host = "localhost";
         String port = "5432";

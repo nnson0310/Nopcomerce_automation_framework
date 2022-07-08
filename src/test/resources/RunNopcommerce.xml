@@ -16,7 +16,7 @@
         <parameter name="port" value="4444"></parameter>
         <parameter name="platform" value="Windows 10"></parameter>
         <classes>
-            <class name="user.Wishlist"></class>
+            <class name="user.CompareList"></class>
         </classes>
     </test>
 </suite>

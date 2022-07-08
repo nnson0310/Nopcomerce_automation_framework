@@ -1,10 +1,10 @@
 package pageobjects.user;
 
-import commons.BasePage;
+import commons.UserBasePage;
 import org.openqa.selenium.WebDriver;
 import pageinterfaces.user.ProductReviewsPageUI;
 
-public class ProductReviewsPage extends BasePage {
+public class ProductReviewsPage extends UserBasePage {
     WebDriver driver;
 
     public ProductReviewsPage(WebDriver driver) {

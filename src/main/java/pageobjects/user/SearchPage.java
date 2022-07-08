@@ -1,10 +1,10 @@
 package pageobjects.user;
 
-import commons.BasePage;
+import commons.UserBasePage;
 import org.openqa.selenium.WebDriver;
 import pageinterfaces.user.SearchPageUI;
 
-public class SearchPage extends BasePage {
+public class SearchPage extends UserBasePage {
     WebDriver driver;
 
     public SearchPage(WebDriver driver) {

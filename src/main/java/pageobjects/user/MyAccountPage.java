@@ -1,10 +1,10 @@
 package pageobjects.user;
 
-import commons.BasePage;
+import commons.UserBasePage;
 import org.openqa.selenium.WebDriver;
 import pageinterfaces.user.MyAccountPageUI;
 
-public class MyAccountPage extends BasePage {
+public class MyAccountPage extends UserBasePage {
     WebDriver driver;
 
     public MyAccountPage(WebDriver driver) {

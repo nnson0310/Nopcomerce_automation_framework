@@ -70,4 +70,8 @@ public class PageGeneratorManager {
         return new ShoppingCartPage(driver);
     }
 
+    public CompareListPage getCompareListPage(WebDriver driver) {
+        return new CompareListPage(driver);
+    }
+
 }

@@ -1,6 +1,6 @@
 package pageobjects.user;
 
-import commons.BasePage;
+import commons.UserBasePage;
 import org.openqa.selenium.WebDriver;
 import pageinterfaces.user.NotebookPageUI;
 import customexception.InvalidSortNameException;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class NotebookPage extends BasePage {
+public class NotebookPage extends UserBasePage {
     WebDriver driver;
 
     public NotebookPage(WebDriver driver) {
