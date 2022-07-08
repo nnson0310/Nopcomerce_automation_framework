@@ -1,7 +1,6 @@
 package commons;
 
 import org.openqa.selenium.WebDriver;
-import pageinterfaces.user.ProductDetailsPageUI;
 import pageinterfaces.user.SearchPageUI;
 import pageinterfaces.user.UserCommonUI;
 import pageobjects.PageGeneratorManager;
@@ -60,8 +59,13 @@ public class UserBasePage extends BasePage {
     }
 
     public String getProductQuantityOfWishlistHeaderLink(WebDriver driver) {
-        waitForElementVisible(driver, UserCommonUI.WISHLIST_HEADER_QUANTITY);
-        return getElementText(driver, UserCommonUI.WISHLIST_HEADER_QUANTITY).replaceAll("[()]","");
+        waitForElementVisible(driver, UserCommonUI.WISHLIST_HEADER_LINK_QTY);
+        return getElementText(driver, UserCommonUI.WISHLIST_HEADER_LINK_QTY).replaceAll("[()]","");
+    }
+
+    public String getProductQuantityOfShoppingCartHeaderLink(WebDriver driver) {
+        waitForElementVisible(driver, UserCommonUI.SHOPPING_CART_HEADER_LINK_QTY);
+        return getElementText(driver, UserCommonUI.SHOPPING_CART_HEADER_LINK_QTY).replaceAll("[()]","");
     }
 
     public void clickToAddToCompareListButton(WebDriver driver, String productName) {
@@ -82,5 +86,11 @@ public class UserBasePage extends BasePage {
     public String getProductPrice(WebDriver driver, String productName) {
         waitForElementVisible(driver, UserCommonUI.PRODUCT_PRICE_INFO, productName);
         return getElementText(driver, UserCommonUI.PRODUCT_PRICE_INFO, productName);
+    }
+
+    public void hoverToShoppingCartHeaderLink(WebDriver driver, String fieldName) {
+        waitForElementClickable(driver, UserCommonUI.DYNAMIC_HEADER_LINK, fieldName);
+        scrollToElement(driver, UserCommonUI.DYNAMIC_HEADER_LINK, fieldName);
+        hoverToElement(driver, UserCommonUI.DYNAMIC_HEADER_LINK, fieldName);
     }
 }
