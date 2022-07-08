@@ -1,11 +1,11 @@
 package pageobjects.user;
 
-import commons.BasePage;
+import commons.UserBasePage;
 import org.openqa.selenium.WebDriver;
 import pageinterfaces.user.ProductDetailsPageUI;
 import pageobjects.PageGeneratorManager;
 
-public class ProductDetailsPage extends BasePage {
+public class ProductDetailsPage extends UserBasePage {
 
     WebDriver driver;
 
@@ -22,16 +22,6 @@ public class ProductDetailsPage extends BasePage {
     public void clickToAddToWishlistButton(WebDriver driver) {
         waitForElementVisible(driver, ProductDetailsPageUI.ADD_TO_WISHLIST_BUTTON);
         clickToElement(driver, ProductDetailsPageUI.ADD_TO_WISHLIST_BUTTON);
-    }
-
-    public String getSuccessNotificationContent(WebDriver driver) {
-        waitForElementVisible(driver, ProductDetailsPageUI.SUCCESS_NOTIFICATION);
-        return getElementText(driver, ProductDetailsPageUI.SUCCESS_NOTIFICATION);
-    }
-
-    public void clickToCloseBarNotificationButton(WebDriver driver) {
-        waitForElementClickable(driver, ProductDetailsPageUI.CLOSE_NOTIFICATION_BUTTON);
-        clickToElement(driver, ProductDetailsPageUI.CLOSE_NOTIFICATION_BUTTON);
     }
 
     public String getProductQuantity(WebDriver driver) {

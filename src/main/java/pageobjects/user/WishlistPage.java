@@ -1,10 +1,10 @@
 package pageobjects.user;
 
-import commons.BasePage;
+import commons.UserBasePage;
 import org.openqa.selenium.WebDriver;
 import pageinterfaces.user.WishlistPageUI;
 
-public class WishlistPage extends BasePage {
+public class WishlistPage extends UserBasePage {
     WebDriver driver;
 
     public WishlistPage(WebDriver driver) {

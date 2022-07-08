@@ -1,10 +1,10 @@
 package pageobjects.user;
 
-import commons.BasePage;
+import commons.UserBasePage;
 import org.openqa.selenium.WebDriver;
 import pageinterfaces.user.ShoppingCartPageUI;
 
-public class ShoppingCartPage extends BasePage {
+public class ShoppingCartPage extends UserBasePage {
     WebDriver driver;
 
     public ShoppingCartPage(WebDriver driver) {

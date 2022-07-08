@@ -1,11 +1,11 @@
 package pageobjects.user;
 
-import commons.BasePage;
+import commons.UserBasePage;
 import org.openqa.selenium.WebDriver;
 import pageinterfaces.user.UserHomePageUI;
 import pageobjects.PageGeneratorManager;
 
-public class UserHomePage extends BasePage {
+public class UserHomePage extends UserBasePage {
 
     WebDriver driver;
 
