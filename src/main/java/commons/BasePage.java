@@ -569,4 +569,9 @@ public abstract class BasePage {
 
         explicitWait.until(ExpectedConditions.invisibilityOfAllElements(getElements(driver, getDynamicXpath(locator, dynamicValues))));
     }
+
+    public void inputToDynamicTextboxByNameAttribute(WebDriver driver, String value, String nameAttribute) {
+        waitForElementVisible(driver, UserCommonUI.DYNAMIC_TEXTBOX_BY_NAME, nameAttribute);
+        sendKeyToElement(driver, UserCommonUI.DYNAMIC_TEXTBOX_BY_NAME, value, nameAttribute);
+    }
 }

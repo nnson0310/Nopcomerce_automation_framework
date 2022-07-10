@@ -1,6 +1,8 @@
 package reportconfig;
 
 import static reportconfig.ExtentTestManager.getTest;
+
+import commons.GlobalConstants;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +11,9 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import com.aventstack.extentreports.Status;
 import commons.BaseTest;
+import utilities.FunctionHelper;
+
+import java.io.File;
 
 public class ExtentTestListener extends BaseTest implements ITestListener {
     private static String getTestMethodName(ITestResult iTestResult) {
@@ -27,6 +32,7 @@ public class ExtentTestListener extends BaseTest implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
+        FunctionHelper.deleteAllFilesInFolder(new File(GlobalConstants.getGlobalConstants().getDownloadFilePath()));
     }
 
     @Override

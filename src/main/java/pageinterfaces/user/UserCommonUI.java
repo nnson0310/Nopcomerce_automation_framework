@@ -12,4 +12,6 @@ public abstract class UserCommonUI {
     public static final String CLOSE_NOTIFICATION_BUTTON = "css=div#bar-notification span.close";
     public static final String PRODUCT_PRICE_INFO = "xpath=//a[contains(text(), '%s')]//parent::h2//following-sibling::div[@class='add-info']//span[contains(@class, 'actual-price')]";
     public static final String SHOPPING_CART_HEADER_LINK_QTY = "css=div.header-links a.ico-cart span.cart-qty";
+    public static final String DYNAMIC_TEXTBOX_BY_NAME = "xpath=//input[@name='%s']";
+    public static final String DYNAMIC_TEXTBOX_BY_ID = "xpath=//input[@id='%s']";
 }

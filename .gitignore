@@ -4,6 +4,7 @@ test-output/
 browserLogs/
 extentReport/
 scriptLogs/
+src/main/resources/downloadedFiles
 src/test/resources/cloud_credentials.properties
 pom.xml.tag
 pom.xml.releaseBackup

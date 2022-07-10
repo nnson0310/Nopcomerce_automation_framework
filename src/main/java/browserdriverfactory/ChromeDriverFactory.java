@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.File;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChromeDriverFactory implements BrowserFactory {
 
@@ -23,7 +25,17 @@ public class ChromeDriverFactory implements BrowserFactory {
         chromeOptions.addArguments("--disable-infobars");
         chromeOptions.addArguments("--disable-notifications");
         chromeOptions.addArguments("--disable-geolocation");
-        chromeOptions.addExtensions(new File(GlobalConstants.getGlobalConstants().getBrowserExtensionPath() + "adblock.crx"));
+
+        //hide browser prompt when downloading files
+        Map<String, Object> preferences = new HashMap<String, Object>();
+        preferences.put("download.prompt_for_download", false);
+        preferences.put("safebrowsing.enabled", true);
+        preferences.put("download.directory_upgrade", true);
+        preferences.put("download.default_directory", GlobalConstants.getGlobalConstants().getDownloadFilePath());
+        chromeOptions.setExperimentalOption("prefs", preferences);
+
+        // add extension
+//        chromeOptions.addExtensions(new File(GlobalConstants.getGlobalConstants().getBrowserExtensionPath() + "adblock.crx"));
         chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 
         return new ChromeDriver(chromeOptions);

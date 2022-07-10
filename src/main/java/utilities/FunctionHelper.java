@@ -1,9 +1,12 @@
 package utilities;
 
+import org.apache.pdfbox.pdfparser.PDFParser;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
-import java.text.ParseException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -79,5 +82,43 @@ public final class FunctionHelper {
 
     public static String getProductPriceByText(String productPrice) {
         return productPrice.replace(".00", "").replaceAll("[$,]","");
+    }
+
+    public static String getOnlyCharacterFromString(String str) {
+        return str.replaceAll("[^A-Za-z]+", "");
+    }
+
+    /**
+     * Delete all files in specific folder
+     * @param folder instance of File
+     */
+    public static void deleteAllFilesInFolder(File folder) {
+        for(File file: folder.listFiles()) {
+            if(!file.isDirectory()) {
+                file.delete();
+            }
+        }
+    }
+
+    /**
+     * Read content from pdf file
+     * @param pathToFile relative path to pdf file
+     * @return pdf content
+     */
+    public static String readPdfContent(String pathToFile) {
+        String pdfText = null;
+        try {
+            File file = new File(pathToFile);
+            FileInputStream fileInputStream = new FileInputStream(file);
+
+            PDDocument pdfDocument = PDDocument.load(fileInputStream);
+            PDFTextStripper pdfTextStripper = new PDFTextStripper();
+            pdfText = pdfTextStripper.getText(pdfDocument);
+            pdfDocument.close();
+            return pdfText;
+        } catch (IOException e) {
+            System.out.println("Can not parse PDF content " + e.getMessage());
+        }
+        return pdfText;
     }
 }

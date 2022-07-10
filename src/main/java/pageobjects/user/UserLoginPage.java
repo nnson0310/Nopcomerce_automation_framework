@@ -3,6 +3,7 @@ package pageobjects.user;
 import commons.UserBasePage;
 import org.openqa.selenium.WebDriver;
 import pageinterfaces.user.UserLoginPageUI;
+import pageobjects.PageGeneratorManager;
 
 public class UserLoginPage extends UserBasePage {
     WebDriver driver;
@@ -29,5 +30,11 @@ public class UserLoginPage extends UserBasePage {
     public void inputToPasswordField(WebDriver driver, String password) {
         waitForElementVisible(driver, UserLoginPageUI.PASSWORD_FIELD);
         sendKeyToElement(driver, UserLoginPageUI.PASSWORD_FIELD, password);
+    }
+
+    public CheckoutPage clickToCheckoutAsGuestButton(WebDriver driver) {
+        waitForElementClickable(driver, UserLoginPageUI.CHECKOUT_AS_GUEST_BUTTON);
+        clickToElement(driver, UserLoginPageUI.CHECKOUT_AS_GUEST_BUTTON);
+        return PageGeneratorManager.getPageGeneratorManager().getCheckoutPage(driver);
     }
 }

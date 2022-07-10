@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import pageinterfaces.user.SearchPageUI;
 import pageinterfaces.user.UserCommonUI;
 import pageobjects.PageGeneratorManager;
+import pageobjects.user.ProductDetailsPage;
 import pageobjects.user.UserHomePage;
 
 import java.util.List;
@@ -12,11 +13,13 @@ public class UserBasePage extends BasePage {
 
     public void clickToDynamicHeaderLink(WebDriver driver, String fieldName) {
         waitForElementClickable(driver, UserCommonUI.DYNAMIC_HEADER_LINK, fieldName);
+        scrollToElement(driver, UserCommonUI.DYNAMIC_HEADER_LINK, fieldName);
         clickToElement(driver, UserCommonUI.DYNAMIC_HEADER_LINK, fieldName);
     }
 
     public void clickToDynamicFooterLink(WebDriver driver, String fieldName) {
         waitForElementClickable(driver, UserCommonUI.DYNAMIC_FOOTER_LINK, fieldName);
+        scrollToElement(driver, UserCommonUI.DYNAMIC_FOOTER_LINK, fieldName);
         clickToElement(driver, UserCommonUI.DYNAMIC_FOOTER_LINK, fieldName);
     }
 
@@ -47,9 +50,10 @@ public class UserBasePage extends BasePage {
         return result;
     }
 
-    public void clickToDynamicProductImageLink(WebDriver driver, String productName) {
+    public ProductDetailsPage clickToDynamicProductImageLink(WebDriver driver, String productName) {
         waitForElementClickable(driver, UserCommonUI.DYNAMIC_PRODUCT_IMAGE_LINK, productName);
         clickToElement(driver, UserCommonUI.DYNAMIC_PRODUCT_IMAGE_LINK, productName);
+        return PageGeneratorManager.getPageGeneratorManager().getProductDetailsPage(driver);
     }
 
     public UserHomePage clickToHeaderLogoLink(WebDriver driver) {

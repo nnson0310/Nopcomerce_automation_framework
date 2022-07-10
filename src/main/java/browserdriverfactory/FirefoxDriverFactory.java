@@ -35,6 +35,7 @@ public class FirefoxDriverFactory implements BrowserFactory {
                 "text/csv," +
                 "application/csv," +
                 "application/excel," +
+                "application/pdf" +
                 "text/comma-separated-values," +
                 "text/xml," +
                 "application/xml," +
