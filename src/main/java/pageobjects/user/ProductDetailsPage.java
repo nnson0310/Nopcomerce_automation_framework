@@ -101,4 +101,9 @@ public class ProductDetailsPage extends UserBasePage {
         String subTotal = getElementText(driver, ProductDetailsPageUI.MINI_CART_PRODUCT_SUBTOTAL);
         return FunctionHelper.getProductPriceByText(subTotal);
     }
+
+    public String getSkuCode(WebDriver driver) {
+        waitForElementVisible(driver, ProductDetailsPageUI.SKU_CODE_INFO);
+        return getElementText(driver, ProductDetailsPageUI.SKU_CODE_INFO);
+    }
 }

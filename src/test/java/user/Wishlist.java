@@ -61,8 +61,7 @@ public class Wishlist extends BaseTest {
 
         startTest(method.getName(), "TC_01_Add_To_Wishlist - Start test");
         getTest().log(Status.INFO, "TC_01_Add_To_Wishlist - Step 01: Click to product image name = " + productName);
-        notebookPage.clickToDynamicProductImageLink(driver, productName);
-        productDetailsPage = PageGeneratorManager.getPageGeneratorManager().getProductDetailsPage(driver);
+        productDetailsPage = notebookPage.clickToDynamicProductImageLink(driver, productName);
 
         // get default product quantity
         productQuantity = productDetailsPage.getProductQuantity(driver);

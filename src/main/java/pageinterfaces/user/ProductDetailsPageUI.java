@@ -17,4 +17,5 @@ public abstract class ProductDetailsPageUI {
     public static final String MINI_CART_PRODUCT_UNIT_PRICE = "css=div.mini-shopping-cart div.price span";
     public static final String MINI_CART_PRODUCT_QTY = "css=div.mini-shopping-cart div.quantity span";
     public static final String MINI_CART_PRODUCT_SUBTOTAL = "css=div.mini-shopping-cart div.totals strong";
+    public static final String SKU_CODE_INFO = "css=div.sku span.value";
 }

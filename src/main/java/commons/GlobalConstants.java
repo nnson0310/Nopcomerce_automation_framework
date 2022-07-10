@@ -35,9 +35,9 @@ public class GlobalConstants {
     private final String osName = System.getProperty("os.name");
     private final String pathToMainResources = projectPath + File.separator + "src" + File.separator + "main" + File.separator + "resources" +  File.separator;
     private final String reportScreenshot =  pathToMainResources + "reportScreenshot" + File.separator;
-    private final String downloadFilePath = pathToMainResources + "downloadFiles";
-    private final String uploadFilePath = pathToMainResources + "uploadFiles";
-    private final String dataTestPath = pathToMainResources + "testData";
+    private final String downloadFilePath = pathToMainResources + "downloadedFiles" + File.separator;
+    private final String uploadFilePath = pathToMainResources + "uploadFiles" + File.separator;
+    private final String dataTestPath = pathToMainResources + "testData" + File.separator;
     private final String browserLogFilePath = projectPath + File.separator + "browserLogs" + File.separator;
     private final String browserExtensionPath = projectPath + File.separator + "browserExtensions" + File.separator;
     private final String javaVersion = System.getProperty("java.version");

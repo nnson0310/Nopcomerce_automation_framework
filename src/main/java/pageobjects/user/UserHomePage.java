@@ -16,7 +16,7 @@ public class UserHomePage extends UserBasePage {
     public UserLoginPage clickToLoginLink(WebDriver driver) {
         waitForElementClickable(driver, UserHomePageUI.LOGIN_HEADER_LINK);
         clickToElement(driver, UserHomePageUI.LOGIN_HEADER_LINK);
-        return PageGeneratorManager.getPageGeneratorManager().getLoginHomePage(driver);
+        return PageGeneratorManager.getPageGeneratorManager().getUserLoginPage(driver);
     }
 
     public UserRegisterPage clickToRegisterLink(WebDriver driver) {

@@ -74,8 +74,7 @@ public class Order extends BaseTest {
 
         startTest(method.getName(), "TC_01_Add_To_Cart - Start test");
         getTest().log(Status.INFO, "TC_01_Add_To_Cart - Step 01: Click to product image name = " + productName);
-        desktopsPage.clickToDynamicProductImageLink(driver, productName);
-        productDetailsPage = PageGeneratorManager.getPageGeneratorManager().getProductDetailsPage(driver);
+        productDetailsPage = desktopsPage.clickToDynamicProductImageLink(driver, productName);
 
         getTest().log(Status.INFO, "TC_01_Add_To_Cart - Step 02: Select Ram = " + ram);
         productDetailsPage.selectRamDropdown(driver, ram);

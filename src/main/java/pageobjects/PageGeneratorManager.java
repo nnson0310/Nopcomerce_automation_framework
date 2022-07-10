@@ -22,7 +22,7 @@ public class PageGeneratorManager {
         return new UserHomePage(driver);
     }
 
-    public UserLoginPage getLoginHomePage(WebDriver driver) {
+    public UserLoginPage getUserLoginPage(WebDriver driver) {
         return new UserLoginPage(driver);
     }
 
@@ -72,6 +72,18 @@ public class PageGeneratorManager {
 
     public CompareListPage getCompareListPage(WebDriver driver) {
         return new CompareListPage(driver);
+    }
+
+    public CheckoutPage getCheckoutPage(WebDriver driver) {
+        return new CheckoutPage(driver);
+    }
+
+    public OrderCompletePage getOrderCompletePage(WebDriver driver) {
+        return new OrderCompletePage(driver);
+    }
+
+    public OrderDetailPage getOrderDetailPage(WebDriver driver) {
+        return new OrderDetailPage(driver);
     }
 
 }
