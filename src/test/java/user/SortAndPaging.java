@@ -2,14 +2,14 @@ package user;
 
 import com.aventstack.extentreports.Status;
 import commons.BaseTest;
-import dataprovider.UserSortAndPaging;
+import data.provider.UserSortAndPaging;
 import dbconnection.DBConnect;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageobjects.PageGeneratorManager;
-import pageobjects.user.NotebookPage;
-import pageobjects.user.UserHomePage;
+import page.objects.UserPageGeneratorManager;
+import page.objects.user.NotebookPage;
+import page.objects.user.UserHomePage;
 import utilities.FunctionHelper;
 
 import java.lang.reflect.Method;
@@ -18,8 +18,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static reportconfig.ExtentTestManager.getTest;
-import static reportconfig.ExtentTestManager.startTest;
+import static report.config.ExtentTestManager.getTest;
+import static report.config.ExtentTestManager.startTest;
 
 public class SortAndPaging extends BaseTest {
 
@@ -33,7 +33,7 @@ public class SortAndPaging extends BaseTest {
     Connection conn;
 
     @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeTest
+    @BeforeClass
     public void setUp(
             String userSiteUrl,
             @Optional("firefox") String browserName,
@@ -44,14 +44,14 @@ public class SortAndPaging extends BaseTest {
             @Optional("Windows 10") String platform
     ) throws SQLException {
         driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
-        userHomePage = PageGeneratorManager.getPageGeneratorManager().getUserHomePage(driver);
+        userHomePage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
 
         topMenu = "Computers";
         topMenuSubList = "Notebooks";
 
         log.info("Pre condition: Navigate to " + topMenuSubList + " page");
         userHomePage.clickToTopMenuSubList(driver, topMenu, topMenuSubList);
-        notebookPage = PageGeneratorManager.getPageGeneratorManager().getNotebookPage(driver);
+        notebookPage = UserPageGeneratorManager.getUserPageGeneratorManager().getNotebookPage(driver);
 
         //test data
         //current number of products in database

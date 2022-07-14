@@ -3,20 +3,20 @@ package user;
 import com.aventstack.extentreports.Status;
 import commons.BaseTest;
 import commons.GlobalConstants;
-import dataprovider.UserCheckout;
+import data.provider.UserCheckout;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageobjects.PageGeneratorManager;
-import pageobjects.user.*;
+import page.objects.UserPageGeneratorManager;
+import page.objects.user.*;
 import utilities.FunctionHelper;
 
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
-import static reportconfig.ExtentTestManager.getTest;
-import static reportconfig.ExtentTestManager.startTest;
+import static report.config.ExtentTestManager.getTest;
+import static report.config.ExtentTestManager.startTest;
 
 public class Checkout extends BaseTest {
     WebDriver driver;
@@ -40,7 +40,7 @@ public class Checkout extends BaseTest {
     OrderDetailPage orderDetailPage;
 
     @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeTest
+    @BeforeClass
     public void setUp(
             String userSiteUrl,
             @Optional("firefox") String browserName,
@@ -51,7 +51,7 @@ public class Checkout extends BaseTest {
             @Optional("Windows 10") String platform
     ) {
         driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
-        userHomePage = PageGeneratorManager.getPageGeneratorManager().getUserHomePage(driver);
+        userHomePage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
 
         //data
         topMenu = "Computers";
@@ -60,7 +60,7 @@ public class Checkout extends BaseTest {
 
         log.info("Pre condition - Step 01: Navigate to " + topMenuSubList + " page");
         userHomePage.clickToTopMenuSubList(driver, topMenu, topMenuSubList);
-        notebookPage = PageGeneratorManager.getPageGeneratorManager().getNotebookPage(driver);
+        notebookPage = UserPageGeneratorManager.getUserPageGeneratorManager().getNotebookPage(driver);
 
         log.info("Pre condition - Step 02: Click to image of product name = " + productName);
         productDetailsPage = notebookPage.clickToDynamicProductImageLink(driver, productName);
@@ -80,7 +80,7 @@ public class Checkout extends BaseTest {
 
         log.info("Pre condition - Step 05: Click to 'Shopping Cart' header link");
         productDetailsPage.clickToDynamicHeaderLink(driver, "ico-cart");
-        shoppingCartPage = PageGeneratorManager.getPageGeneratorManager().getShoppingCartPage(driver);
+        shoppingCartPage = UserPageGeneratorManager.getUserPageGeneratorManager().getShoppingCartPage(driver);
         subTotal = shoppingCartPage.getSubTotal(driver);
 
         //test data
@@ -115,7 +115,7 @@ public class Checkout extends BaseTest {
 
         getTest().log(Status.INFO, "TC_01_Cheque_Payment_Method - Step 02: Click to Checkout button");
         shoppingCartPage.clickToCheckoutButton(driver);
-        userLoginPage = PageGeneratorManager.getPageGeneratorManager().getUserLoginPage(driver);
+        userLoginPage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserLoginPage(driver);
 
         getTest().log(Status.INFO, "TC_01_Cheque_Payment_Method - Step 03: Click to 'Checkout as guest' button");
         checkoutPage = userLoginPage.clickToCheckoutAsGuestButton(driver);

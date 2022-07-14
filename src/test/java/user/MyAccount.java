@@ -5,15 +5,15 @@ import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageobjects.PageGeneratorManager;
-import pageobjects.user.*;
+import page.objects.UserPageGeneratorManager;
+import page.objects.user.*;
 import utilities.DataFaker;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import static reportconfig.ExtentTestManager.getTest;
-import static reportconfig.ExtentTestManager.startTest;
+import static report.config.ExtentTestManager.getTest;
+import static report.config.ExtentTestManager.startTest;
 
 public class MyAccount extends BaseTest {
 
@@ -38,7 +38,7 @@ public class MyAccount extends BaseTest {
     Map<String, Integer> ratings;
 
     @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeTest
+    @BeforeClass
     public void setUp(
             String userSiteUrl,
             @Optional("firefox") String browserName,
@@ -50,7 +50,7 @@ public class MyAccount extends BaseTest {
             Method method
     ) {
         driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
-        userHomePage = PageGeneratorManager.getPageGeneratorManager().getUserHomePage(driver);
+        userHomePage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
 
         //registration info
         firstName = "son";
@@ -78,7 +78,7 @@ public class MyAccount extends BaseTest {
 
         log.info("Pre Condition - Register and Login - Step 07: Click to register button");
         userRegisterPage.clickToRegisterButton(driver);
-        userRegisterResultPage = PageGeneratorManager.getPageGeneratorManager().getUserRegisterResultPage(driver);
+        userRegisterResultPage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserRegisterResultPage(driver);
 
         log.info("Pre Condition - Register and Login - Step 08: Click to continue button");
         userHomePage = userRegisterResultPage.clickToContinueButton(driver);
@@ -136,7 +136,7 @@ public class MyAccount extends BaseTest {
         startTest(method.getName(), "TC_03_Add_Product_Reviews - Start Test");
         getTest().log(Status.INFO, "TC_03_Add_Product_Reviews - Step 01: Click to top menu = " + topMenuSubList);
         myAccountPage.clickToTopMenuSubList(driver, topMenu, topMenuSubList);
-        desktopsPage = PageGeneratorManager.getPageGeneratorManager().getDesktopsPage(driver);
+        desktopsPage = UserPageGeneratorManager.getUserPageGeneratorManager().getDesktopsPage(driver);
 
         getTest().log(Status.INFO, "TC_03_Add_Product_Reviews - Step 02: Click to product title = " + productTitle);
         productDetailsPage =  desktopsPage.clickToProductTitle(driver, productTitle);
@@ -161,11 +161,11 @@ public class MyAccount extends BaseTest {
 
         getTest().log(Status.INFO, "TC_03_Add_Product_Reviews - Step 08: Click to My Account Header link");
         productReviewsPage.clickToDynamicHeaderLink(driver, myAccountHeaderLink);
-        myAccountPage = PageGeneratorManager.getPageGeneratorManager().getMyAccountPage(driver);
+        myAccountPage = UserPageGeneratorManager.getUserPageGeneratorManager().getMyAccountPage(driver);
 
         getTest().log(Status.INFO, "TC_03_Add_Product_Reviews - Step 09: Click to My Account Header link");
         myAccountPage.clickToDynamicBlockAccountNavigation(driver, myProductReviewNavigation);
-        myProductReviewsPage = PageGeneratorManager.getPageGeneratorManager().getMyProductReviewsPage(driver);
+        myProductReviewsPage = UserPageGeneratorManager.getUserPageGeneratorManager().getMyProductReviewsPage(driver);
 
         getTest().log(Status.INFO, "TC_03_Add_Product_Reviews - Step 10: Verify that review title = " + reviewTitle);
         Assert.assertEquals(myProductReviewsPage.getProductReviewTitle(driver), reviewTitle);

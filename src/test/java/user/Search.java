@@ -5,10 +5,12 @@ import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageobjects.PageGeneratorManager;
-import pageobjects.user.*;
-import static reportconfig.ExtentTestManager.startTest;
-import static reportconfig.ExtentTestManager.getTest;
+import page.objects.UserPageGeneratorManager;
+import page.objects.user.SearchPage;
+import page.objects.user.UserHomePage;
+
+import static report.config.ExtentTestManager.startTest;
+import static report.config.ExtentTestManager.getTest;
 
 import java.lang.reflect.Method;
 
@@ -22,7 +24,7 @@ public class Search extends BaseTest {
     SearchPage searchPage;
 
     @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeTest
+    @BeforeClass
     public void setUp(
             String userSiteUrl,
             @Optional("firefox") String browserName,
@@ -34,11 +36,11 @@ public class Search extends BaseTest {
             Method method
     ) {
         driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
-        userHomePage = PageGeneratorManager.getPageGeneratorManager().getUserHomePage(driver);
+        userHomePage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
 
         log.info("Pre condition: Navigate to search page");
         userHomePage.clickToDynamicFooterLink(driver, "Search");
-        searchPage = PageGeneratorManager.getPageGeneratorManager().getSearchPage(driver);
+        searchPage = UserPageGeneratorManager.getUserPageGeneratorManager().getSearchPage(driver);
 
     }
 

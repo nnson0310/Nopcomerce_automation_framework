@@ -5,14 +5,17 @@ import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageobjects.PageGeneratorManager;
-import pageobjects.user.*;
+import page.objects.UserPageGeneratorManager;
+import page.objects.user.DesktopsPage;
+import page.objects.user.ProductDetailsPage;
+import page.objects.user.ShoppingCartPage;
+import page.objects.user.UserHomePage;
 import utilities.FunctionHelper;
 
 import java.lang.reflect.Method;
 
-import static reportconfig.ExtentTestManager.getTest;
-import static reportconfig.ExtentTestManager.startTest;
+import static report.config.ExtentTestManager.getTest;
+import static report.config.ExtentTestManager.startTest;
 
 public class Order extends BaseTest {
     WebDriver driver;
@@ -29,7 +32,7 @@ public class Order extends BaseTest {
     ShoppingCartPage shoppingCartPage;
 
     @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeTest
+    @BeforeClass
     public void setUp(
             String userSiteUrl,
             @Optional("firefox") String browserName,
@@ -40,14 +43,14 @@ public class Order extends BaseTest {
             @Optional("Windows 10") String platform
     ) {
         driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
-        userHomePage = PageGeneratorManager.getPageGeneratorManager().getUserHomePage(driver);
+        userHomePage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
 
         topMenu = "Computers";
         topMenuSubList = "Desktops";
 
         log.info("Pre condition: Navigate to " + topMenuSubList + " page");
         userHomePage.clickToTopMenuSubList(driver, topMenu, topMenuSubList);
-        desktopsPage = PageGeneratorManager.getPageGeneratorManager().getDesktopsPage(driver);
+        desktopsPage = UserPageGeneratorManager.getUserPageGeneratorManager().getDesktopsPage(driver);
 
         //test data
         processor = "2.5 GHz Intel Pentium Dual-Core E2200 [+$15.00]";

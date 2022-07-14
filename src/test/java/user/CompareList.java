@@ -5,13 +5,14 @@ import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageobjects.user.CompareListPage;
-import pageobjects.PageGeneratorManager;
-import pageobjects.user.*;
+import page.objects.user.CompareListPage;
+import page.objects.UserPageGeneratorManager;
+import page.objects.user.NotebookPage;
+import page.objects.user.UserHomePage;
 
 import java.lang.reflect.Method;
-import static reportconfig.ExtentTestManager.getTest;
-import static reportconfig.ExtentTestManager.startTest;
+import static report.config.ExtentTestManager.getTest;
+import static report.config.ExtentTestManager.startTest;
 
 public class CompareList extends BaseTest {
     WebDriver driver;
@@ -27,7 +28,7 @@ public class CompareList extends BaseTest {
     CompareListPage compareListPage;
 
     @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeTest
+    @BeforeClass
     public void setUp(
             String userSiteUrl,
             @Optional("firefox") String browserName,
@@ -38,14 +39,14 @@ public class CompareList extends BaseTest {
             @Optional("Windows 10") String platform
     ) {
         driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
-        userHomePage = PageGeneratorManager.getPageGeneratorManager().getUserHomePage(driver);
+        userHomePage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
 
         topMenu = "Computers";
         topMenuSubList = "Notebooks";
 
         log.info("Pre condition: Navigate to " + topMenuSubList + " page");
         userHomePage.clickToTopMenuSubList(driver, topMenu, topMenuSubList);
-        notebookPage = PageGeneratorManager.getPageGeneratorManager().getNotebookPage(driver);
+        notebookPage = UserPageGeneratorManager.getUserPageGeneratorManager().getNotebookPage(driver);
 
         //test data
         firstCompareProduct = "Apple MacBook Pro 13-inch";
@@ -75,7 +76,7 @@ public class CompareList extends BaseTest {
 
         getTest().log(Status.INFO, "TC_01_Add_To_Compare_List - Step 05: Click to 'Compare products list' footer link");
         notebookPage.clickToDynamicFooterLink(driver, footerLink);
-        compareListPage = PageGeneratorManager.getPageGeneratorManager().getCompareListPage(driver);
+        compareListPage = UserPageGeneratorManager.getUserPageGeneratorManager().getCompareListPage(driver);
 
         getTest().log(Status.INFO, "TC_01_Add_To_Compare_List - Step 06: Verify that first compared product name = " + firstCompareProduct + " and price = " + firstCompareProductPrice);
         Assert.assertEquals(compareListPage.getComparedProductPrice(driver, firstCompareProduct), firstCompareProductPrice);
