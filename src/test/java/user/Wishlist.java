@@ -5,14 +5,14 @@ import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageobjects.PageGeneratorManager;
-import pageobjects.user.*;
+import page.objects.UserPageGeneratorManager;
+import page.objects.user.*;
 import utilities.FunctionHelper;
 
 import java.lang.reflect.Method;
 
-import static reportconfig.ExtentTestManager.getTest;
-import static reportconfig.ExtentTestManager.startTest;
+import static report.config.ExtentTestManager.getTest;
+import static report.config.ExtentTestManager.startTest;
 
 public class Wishlist extends BaseTest {
 
@@ -29,7 +29,7 @@ public class Wishlist extends BaseTest {
     ShoppingCartPage shoppingCartPage;
 
     @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeTest
+    @BeforeClass
     public void setUp(
             String userSiteUrl,
             @Optional("firefox") String browserName,
@@ -40,14 +40,14 @@ public class Wishlist extends BaseTest {
             @Optional("Windows 10") String platform
     ) {
         driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
-        userHomePage = PageGeneratorManager.getPageGeneratorManager().getUserHomePage(driver);
+        userHomePage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
 
         topMenu = "Computers";
         topMenuSubList = "Notebooks";
 
         log.info("Pre condition: Navigate to " + topMenuSubList + " page");
         userHomePage.clickToTopMenuSubList(driver, topMenu, topMenuSubList);
-        notebookPage = PageGeneratorManager.getPageGeneratorManager().getNotebookPage(driver);
+        notebookPage = UserPageGeneratorManager.getUserPageGeneratorManager().getNotebookPage(driver);
 
         //test data
         wishlistFieldName = "ico-wishlist";
@@ -78,7 +78,7 @@ public class Wishlist extends BaseTest {
 
         getTest().log(Status.INFO, "TC_01_Add_To_Wishlist - Step 05: Click to wishlist header link");
         productDetailsPage.clickToDynamicHeaderLink(driver, wishlistFieldName);
-        wishlistPage = PageGeneratorManager.getPageGeneratorManager().getWishlistPage(driver);
+        wishlistPage = UserPageGeneratorManager.getUserPageGeneratorManager().getWishlistPage(driver);
 
         getTest().log(Status.INFO, "TC_01_Add_To_Wishlist - Step 06: Verify that products = " + productName + " are added to wishlist successfully");
         Assert.assertTrue(wishlistPage.isProductAddedToWishlist(driver, productName));
@@ -98,14 +98,14 @@ public class Wishlist extends BaseTest {
 
         getTest().log(Status.INFO, "TC_02_Add_To_Cart_From_Wishlist - Step 02: Click to wishlist header link");
         userHomePage.clickToDynamicHeaderLink(driver, wishlistFieldName);
-        wishlistPage = PageGeneratorManager.getPageGeneratorManager().getWishlistPage(driver);
+        wishlistPage = UserPageGeneratorManager.getUserPageGeneratorManager().getWishlistPage(driver);
 
         getTest().log(Status.INFO, "TC_02_Add_To_Cart_From_Wishlist - Step 03: Click to 'Add to cart' checkbox");
         wishlistPage.clickToAddToCartCheckbox(driver, productName);
 
         getTest().log(Status.INFO, "TC_02_Add_To_Cart_From_Wishlist - Step 04: Click to 'Add to cart' button");
         wishlistPage.clickToAddToCartButton(driver);
-        shoppingCartPage = PageGeneratorManager.getPageGeneratorManager().getShoppingCartPage(driver);
+        shoppingCartPage = UserPageGeneratorManager.getUserPageGeneratorManager().getShoppingCartPage(driver);
 
         getTest().log(Status.INFO, "TC_02_Add_To_Cart_From_Wishlist - Step 05: Verify that product = " + productName + " are added to cart successfully");
         Assert.assertTrue(shoppingCartPage.isProductAddedToCart(driver, productName));

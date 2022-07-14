@@ -2,17 +2,17 @@ package user;
 
 import com.aventstack.extentreports.Status;
 import commons.BaseTest;
-import dataprovider.UserLogin;
+import data.provider.UserLogin;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageobjects.PageGeneratorManager;
-import pageobjects.user.UserHomePage;
-import pageobjects.user.UserLoginPage;
+import page.objects.UserPageGeneratorManager;
+import page.objects.user.UserHomePage;
+import page.objects.user.UserLoginPage;
 import java.lang.reflect.Method;
 
-import static reportconfig.ExtentTestManager.getTest;
-import static reportconfig.ExtentTestManager.startTest;
+import static report.config.ExtentTestManager.getTest;
+import static report.config.ExtentTestManager.startTest;
 
 public class Login extends BaseTest {
     WebDriver driver;
@@ -21,7 +21,7 @@ public class Login extends BaseTest {
     UserLoginPage userLoginPage;
 
     @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeTest
+    @BeforeClass
     public void setUp(
             String userSiteUrl,
             @Optional("firefox") String browserName,
@@ -32,7 +32,7 @@ public class Login extends BaseTest {
             @Optional("Windows 10") String platform
     ) {
         driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
-        userHomePage = PageGeneratorManager.getPageGeneratorManager().getUserHomePage(driver);
+        userHomePage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
         userLoginPage = userHomePage.clickToLoginLink(driver);
     }
 
@@ -81,7 +81,7 @@ public class Login extends BaseTest {
 
         getTest().log(Status.INFO, "TC_03_Valid_Credentials - Step 03: Click to login button");
         userLoginPage.clickToLoginButton(driver);
-        userHomePage = PageGeneratorManager.getPageGeneratorManager().getUserHomePage(driver);
+        userHomePage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
 
         getTest().log(Status.INFO, "TC_03_Valid_Credentials - Step 04: Verify that user can login successfully and be navigated to user's homepage");
         Assert.assertTrue(userHomePage.isMyAccountHeaderLinkDisplayed(driver));

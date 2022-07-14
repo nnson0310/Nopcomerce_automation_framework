@@ -1,6 +1,6 @@
 package envfactory;
 
-import browserdriverfactory.*;
+import browser.driverfactory.*;
 import org.openqa.selenium.WebDriver;
 
 public class LocalEnvFactory {

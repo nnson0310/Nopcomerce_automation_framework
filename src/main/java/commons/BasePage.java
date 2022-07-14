@@ -7,10 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageinterfaces.user.UserCommonUI;
-import pageinterfaces.user.SearchPageUI;
-import pageobjects.PageGeneratorManager;
-import pageobjects.user.UserHomePage;
+import page.interfaces.user.UserCommonUI;
+import utilities.FunctionHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -184,6 +182,20 @@ public abstract class BasePage {
         getElement(driver, locator).click();
     }
 
+    protected void clickToMultiElement(WebDriver driver, String locator) {
+        List<WebElement> elements = getElements(driver, locator);
+        for (WebElement element : elements) {
+            element.click();
+        }
+    }
+
+    protected void clickToMultiElement(WebDriver driver, String locator, String... dynamicValues) {
+        List<WebElement> elements = getElements(driver, getDynamicXpath(locator, dynamicValues));
+        for (WebElement element : elements) {
+            element.click();
+        }
+    }
+
     protected void clickToElement(WebDriver driver, String locator, String... dynamicValues) {
         getElement(driver, getDynamicXpath(locator, dynamicValues)).click();
     }
@@ -248,7 +260,7 @@ public abstract class BasePage {
 
     protected void selectItemInCustomDropDown(WebDriver driver, String parentLocator, String childItemLocator, String expectedItem) {
         getElement(driver, parentLocator).click();
-        sleepInSecond(1);
+        FunctionHelper.sleepInSeconds(1);
 
         explicitWait =  new WebDriverWait(driver, GlobalConstants.getGlobalConstants().getLongTimeout());
         List<WebElement> elements = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(childItemLocator)));
@@ -472,6 +484,11 @@ public abstract class BasePage {
         jsExecutor.executeScript("arguments[0].setAttribute('" + attribute + "', '" + attributeValue + "')", getElement(driver, locator));
     }
 
+    protected void changeAttribute(WebDriver driver, String locator, String attribute, String attributeValue, String... dynamicValues) {
+        jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].setAttribute('" + attribute + "', '" + attributeValue + "')", getElement(driver, getDynamicXpath(locator, dynamicValues)));
+    }
+
     protected boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
         explicitWait = new WebDriverWait(driver, GlobalConstants.getGlobalConstants().getLongTimeout());
         jsExecutor = (JavascriptExecutor) driver;
@@ -570,8 +587,30 @@ public abstract class BasePage {
         explicitWait.until(ExpectedConditions.invisibilityOfAllElements(getElements(driver, getDynamicXpath(locator, dynamicValues))));
     }
 
-    public void inputToDynamicTextboxByNameAttribute(WebDriver driver, String value, String nameAttribute) {
-        waitForElementVisible(driver, UserCommonUI.DYNAMIC_TEXTBOX_BY_NAME, nameAttribute);
-        sendKeyToElement(driver, UserCommonUI.DYNAMIC_TEXTBOX_BY_NAME, value, nameAttribute);
+    /**
+     * Send key to iframe
+     * @param driver webdriver instance
+     * @param value input value
+     * @param locator element locator
+     * @author Son
+     */
+    protected void senKeyToIframe(WebDriver driver, String value, String locator) {
+        WebElement iframe = getElement(driver, locator);
+        explicitWait = new WebDriverWait(driver, GlobalConstants.getGlobalConstants().getLongTimeout());
+        explicitWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframe));
+
+        WebElement editable = driver.switchTo().activeElement();
+        editable.sendKeys(value);
+        driver.switchTo().defaultContent();
+    }
+
+    protected void senKeyToIframe(WebDriver driver, String value, String locator, String... dynamicValues) {
+        WebElement iframe = getElement(driver, getDynamicXpath(locator, dynamicValues));
+        explicitWait = new WebDriverWait(driver, GlobalConstants.getGlobalConstants().getLongTimeout());
+        explicitWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframe));
+
+        WebElement editable = driver.switchTo().activeElement();
+        editable.sendKeys(value);
+        driver.switchTo().defaultContent();
     }
 }

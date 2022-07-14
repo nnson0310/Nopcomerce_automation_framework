@@ -1,11 +1,11 @@
 package commons;
 
 import org.openqa.selenium.WebDriver;
-import pageinterfaces.user.SearchPageUI;
-import pageinterfaces.user.UserCommonUI;
-import pageobjects.PageGeneratorManager;
-import pageobjects.user.ProductDetailsPage;
-import pageobjects.user.UserHomePage;
+import page.interfaces.user.SearchPageUI;
+import page.interfaces.user.UserCommonUI;
+import page.objects.UserPageGeneratorManager;
+import page.objects.user.ProductDetailsPage;
+import page.objects.user.UserHomePage;
 
 import java.util.List;
 
@@ -53,13 +53,13 @@ public class UserBasePage extends BasePage {
     public ProductDetailsPage clickToDynamicProductImageLink(WebDriver driver, String productName) {
         waitForElementClickable(driver, UserCommonUI.DYNAMIC_PRODUCT_IMAGE_LINK, productName);
         clickToElement(driver, UserCommonUI.DYNAMIC_PRODUCT_IMAGE_LINK, productName);
-        return PageGeneratorManager.getPageGeneratorManager().getProductDetailsPage(driver);
+        return UserPageGeneratorManager.getUserPageGeneratorManager().getProductDetailsPage(driver);
     }
 
     public UserHomePage clickToHeaderLogoLink(WebDriver driver) {
         waitForElementClickable(driver, UserCommonUI.HEADER_LOGO_LINK);
         clickToElement(driver, UserCommonUI.HEADER_LOGO_LINK);
-        return PageGeneratorManager.getPageGeneratorManager().getUserHomePage(driver);
+        return UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
     }
 
     public String getProductQuantityOfWishlistHeaderLink(WebDriver driver) {
@@ -96,5 +96,10 @@ public class UserBasePage extends BasePage {
         waitForElementClickable(driver, UserCommonUI.DYNAMIC_HEADER_LINK, fieldName);
         scrollToElement(driver, UserCommonUI.DYNAMIC_HEADER_LINK, fieldName);
         hoverToElement(driver, UserCommonUI.DYNAMIC_HEADER_LINK, fieldName);
+    }
+
+    public void inputToDynamicTextboxByNameAttribute(WebDriver driver, String value, String nameAttribute) {
+        waitForElementVisible(driver, UserCommonUI.DYNAMIC_TEXTBOX_BY_NAME, nameAttribute);
+        sendKeyToElement(driver, UserCommonUI.DYNAMIC_TEXTBOX_BY_NAME, value, nameAttribute);
     }
 }

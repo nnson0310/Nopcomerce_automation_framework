@@ -2,20 +2,20 @@ package user;
 
 import com.aventstack.extentreports.Status;
 import commons.BaseTest;
-import dataprovider.UserRegister;
+import data.provider.UserRegister;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageobjects.PageGeneratorManager;
-import pageobjects.user.UserHomePage;
-import pageobjects.user.UserRegisterPage;
-import pageobjects.user.UserRegisterResultPage;
+import page.objects.UserPageGeneratorManager;
+import page.objects.user.UserHomePage;
+import page.objects.user.UserRegisterPage;
+import page.objects.user.UserRegisterResultPage;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
-import static reportconfig.ExtentTestManager.startTest;
-import static reportconfig.ExtentTestManager.getTest;
+import static report.config.ExtentTestManager.startTest;
+import static report.config.ExtentTestManager.getTest;
 
 public class Register extends BaseTest {
     WebDriver driver;
@@ -28,7 +28,7 @@ public class Register extends BaseTest {
     String birthDateFieldName, birthMonthFieldName, birthYearFieldName, companyFieldName;
 
     @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
-    @BeforeTest
+    @BeforeClass
     public void setUp(
             String userSiteUrl,
             @Optional("firefox") String browserName,
@@ -39,7 +39,7 @@ public class Register extends BaseTest {
             @Optional("Windows 10") String platform
     ) {
         driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
-        userHomePage = PageGeneratorManager.getPageGeneratorManager().getUserHomePage(driver);
+        userHomePage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
         userRegisterPage = userHomePage.clickToRegisterLink(driver);
 
         emailFieldName = "Email";
@@ -193,7 +193,7 @@ public class Register extends BaseTest {
 
         getTest().log(Status.INFO, "TC_04_Valid_Info - Step 09: Click to register button");
         userRegisterPage.clickToRegisterButton(driver);
-        userRegisterResultPage = PageGeneratorManager.getPageGeneratorManager().getUserRegisterResultPage(driver);
+        userRegisterResultPage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserRegisterResultPage(driver);
 
         getTest().log(Status.INFO, "TC_04_Valid_Info - Step 10: Verify that user can register successfully");
         Assert.assertTrue(userRegisterResultPage.isRegisterSuccessMessageDisplayed(driver, "Your registration completed"));
