@@ -1,10 +1,9 @@
 package commons;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import page.interfaces.admin.AdminCommonUI;
-import utilities.FunctionHelper;
+import page.interfaces.admin.CustomerListPageUI;
 
 public class AdminBasePage extends BasePage {
 
@@ -73,5 +72,42 @@ public class AdminBasePage extends BasePage {
     public boolean isNewItemDisplayedInTable(WebDriver driver, String tableId, String itemName) {
         waitForElementVisible(driver, AdminCommonUI.SEARCH_RESULT_NAME_LABEL_TABLE_ROW, tableId, itemName);
         return isElementDisplayed(driver, AdminCommonUI.SEARCH_RESULT_NAME_LABEL_TABLE_ROW, tableId, itemName);
+    }
+
+    public void clickToTableButton(WebDriver driver, String tableCellData, String buttonName) {
+        String columnIndex = String.valueOf(getElementSize(driver, AdminCommonUI.TABLE_BUTTON_COLUMN_HEADER, buttonName) + 1);
+        String rowIndex = String.valueOf(getElementSize(driver, AdminCommonUI.ITEM_LABEL_TABLE_ROW, tableCellData) + 1);
+        waitForElementClickable(driver, AdminCommonUI.TABLE_ROW_EDIT_BUTTON, rowIndex, columnIndex);
+        scrollToElement(driver, AdminCommonUI.TABLE_ROW_EDIT_BUTTON, rowIndex, columnIndex);
+        clickToElement(driver, AdminCommonUI.TABLE_ROW_EDIT_BUTTON, rowIndex, columnIndex);
+    }
+
+    public void clickToCardTitle(WebDriver driver, String card, String cardTitle) {
+        waitForElementClickable(driver, AdminCommonUI.CARD_TITLE_LABEL_DIV, card, cardTitle);
+        clickToElement(driver, AdminCommonUI.CARD_TITLE_LABEL_DIV, card, cardTitle);
+    }
+
+    public void clickToBackLink(WebDriver driver, String backLinkFieldName) {
+        waitForElementClickable(driver, AdminCommonUI.BACK_TO_PREV_PAGE_LINK, backLinkFieldName);
+        clickToElement(driver, AdminCommonUI.BACK_TO_PREV_PAGE_LINK, backLinkFieldName);
+    }
+
+    public void clickToAlertCloseButton(WebDriver driver) {
+        waitForElementClickable(driver, AdminCommonUI.ALERT_CLOSE_BUTTON);
+        clickToElement(driver, AdminCommonUI.ALERT_CLOSE_BUTTON);
+    }
+
+    public void clickToPopupDeleteButton(WebDriver driver) {
+        acceptAlert(driver);
+    }
+
+    public void clickToAddNewButton(WebDriver driver) {
+        waitForElementClickable(driver, AdminCommonUI.ADD_NEW_BUTTON);
+        clickToElement(driver, AdminCommonUI.ADD_NEW_BUTTON);
+    }
+
+    public boolean isNoDataInTableMessageDisplayed(WebDriver driver, String tableId) {
+        waitForElementVisible(driver, AdminCommonUI.NO_DATA_IN_TABLE_MESSAGE, tableId);
+        return isElementDisplayed(driver, AdminCommonUI.NO_DATA_IN_TABLE_MESSAGE, tableId);
     }
 }

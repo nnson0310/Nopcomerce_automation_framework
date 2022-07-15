@@ -12,10 +12,4 @@ public class ManufacturerListPage extends AdminBasePage {
     public ManufacturerListPage(WebDriver driver) {
         this.driver = driver;
     }
-
-    public CreateManufacturerPage clickToAddNewButton(WebDriver driver) {
-        waitForElementClickable(driver, ManufacturerListPageUI.ADD_NEW_BUTTON);
-        clickToElement(driver, ManufacturerListPageUI.ADD_NEW_BUTTON);
-        return AdminPageGeneratorManager.getAdminPageGeneratorManager().getCreateManufacturerPage(driver);
-    }
 }

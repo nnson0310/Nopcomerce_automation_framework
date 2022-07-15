@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import page.objects.AdminPageGeneratorManager;
-import page.objects.admin.CreateManufacturerPage;
+import page.objects.admin.ManufacturerCreatePage;
 import page.objects.admin.LoginPage;
 import page.objects.admin.ManufacturerListPage;
 import utilities.DataFaker;
@@ -23,7 +23,7 @@ public class Create extends BaseTest {
 
     LoginPage loginPage;
     ManufacturerListPage manufacturerListPage;
-    CreateManufacturerPage createManufacturerPage;
+    ManufacturerCreatePage manufacturerCreatePage;
 
     String manufacturerNameTextboxName, descriptionIframeName;
     String manufacturerName, description, picture;
@@ -49,7 +49,8 @@ public class Create extends BaseTest {
         FunctionHelper.sleepInSeconds(1);
 
         log.info("Pre Condition - Step 02: Click to 'Add New' button");
-        createManufacturerPage = manufacturerListPage.clickToAddNewButton(driver);
+        manufacturerListPage.clickToAddNewButton(driver);
+        manufacturerCreatePage = AdminPageGeneratorManager.getAdminPageGeneratorManager().getManufacturerCreatePage(driver);
         FunctionHelper.sleepInSeconds(1);
 
         //field name
@@ -69,24 +70,24 @@ public class Create extends BaseTest {
     public void TC_01_Create_With_Advanced_Mod (Method method) {
         startTest(method.getName(), "TC_01_Create_With_Advanced_Mod - Start test");
         getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 01: Click to Mod Switch Button to switch to advanced mode");
-        createManufacturerPage.clickToModSwitchButton(driver);
+        manufacturerCreatePage.clickToModSwitchButton(driver);
         FunctionHelper.sleepInSeconds(2);
 
         getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 02: Enter manufacturer name = " + manufacturerName);
-        createManufacturerPage.inputToDynamicTextboxByNameAttribute(driver, manufacturerName, manufacturerNameTextboxName);
+        manufacturerCreatePage.inputToDynamicTextboxByNameAttribute(driver, manufacturerName, manufacturerNameTextboxName);
 
         getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 03: Enter description = " + description);
-        createManufacturerPage.inputToDescriptionIframe(driver, description, descriptionIframeName);
+        manufacturerCreatePage.inputToDescriptionIframe(driver, description, descriptionIframeName);
 
         getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 04: Upload manufacturer picture");
-        createManufacturerPage.uploadManufacturerPicture(driver, picture);
+        manufacturerCreatePage.uploadManufacturerPicture(driver, picture);
         FunctionHelper.sleepInSeconds(2);
 
         getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 05: Verify that pictured upload successfully");
-        Assert.assertTrue(createManufacturerPage.isUploadPictureDisplayed(driver, picture));
+        Assert.assertTrue(manufacturerCreatePage.isUploadPictureDisplayed(driver, picture));
 
         getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 06: Click save button");
-        createManufacturerPage.clickToDynamicButtonByName(driver, saveButtonFieldName);
+        manufacturerCreatePage.clickToDynamicButtonByName(driver, saveButtonFieldName);
         manufacturerListPage = AdminPageGeneratorManager.getAdminPageGeneratorManager().getManufacturerListPage(driver);
 
         getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 07: Verify that alert message '\n" +

@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import page.objects.AdminPageGeneratorManager;
-import page.objects.admin.EditProductPage;
+import page.objects.admin.ProductEditPage;
 import page.objects.admin.LoginPage;
 import page.objects.admin.ProductListPage;
 import utilities.FunctionHelper;
@@ -22,7 +22,7 @@ public class Edit extends BaseTest {
 
     LoginPage loginPage;
     ProductListPage productListPage;
-    EditProductPage editProductPage;
+    ProductEditPage editProductPage;
 
     String productSku, availableStartDate, availableEndDate;
     String skuFieldName, goToSkuButtonFieldName, categoryMultiSelectFieldName, categoryMultiSelectItemFieldName;
@@ -75,7 +75,7 @@ public class Edit extends BaseTest {
         getTest().log(Status.INFO, "TC_01_Update_Category_And_Tag_And_Available_Date - Step 02: Click to 'Go' button");
         productListPage.clickToDynamicButtonById(driver, goToSkuButtonFieldName);
         FunctionHelper.sleepInSeconds(2);
-        editProductPage = AdminPageGeneratorManager.getAdminPageGeneratorManager().getEditProductPage(driver);
+        editProductPage = AdminPageGeneratorManager.getAdminPageGeneratorManager().getProductEditPage(driver);
 
         getTest().log(Status.INFO, "TC_01_Update_Category_And_Tag_And_Available_Date - Step 03: Clear all existed category");
         editProductPage.clickToMultiSelectDeleteButton(driver, categoryMultiSelectFieldName);
@@ -102,7 +102,7 @@ public class Edit extends BaseTest {
         getTest().log(Status.INFO, "TC_01_Update_Category_And_Tag_And_Available_Date - Step 10: Click to 'Go' button");
         productListPage.clickToDynamicButtonById(driver, goToSkuButtonFieldName);
         FunctionHelper.sleepInSeconds(2);
-        editProductPage = AdminPageGeneratorManager.getAdminPageGeneratorManager().getEditProductPage(driver);
+        editProductPage = AdminPageGeneratorManager.getAdminPageGeneratorManager().getProductEditPage(driver);
 
         getTest().log(Status.INFO, "TC_01_Update_Category_And_Tag_And_Available_Date - Step 11: Verify that category name = " + updateCategoryName + " is displayed");
         Assert.assertTrue(editProductPage.isSelectedCategoryItemDisplayed(driver, updateCategoryName));

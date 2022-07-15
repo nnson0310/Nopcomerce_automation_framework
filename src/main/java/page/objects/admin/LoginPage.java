@@ -27,4 +27,9 @@ public class LoginPage extends AdminBasePage {
         redirectToPage(driver, url);
         return AdminPageGeneratorManager.getAdminPageGeneratorManager().getManufacturerListPage(driver);
     }
+
+    public CustomerListPage redirectToCustomersListPage(WebDriver driver, String url) {
+        redirectToPage(driver, url);
+        return AdminPageGeneratorManager.getAdminPageGeneratorManager().getCustomerListPage(driver);
+    }
 }

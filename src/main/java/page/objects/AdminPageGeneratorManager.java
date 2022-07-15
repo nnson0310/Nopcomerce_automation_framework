@@ -30,15 +30,31 @@ public class AdminPageGeneratorManager {
         return new ProductListPage(driver);
     }
 
-    public EditProductPage getEditProductPage(WebDriver driver) {
-        return new EditProductPage(driver);
+    public ProductEditPage getProductEditPage(WebDriver driver) {
+        return new ProductEditPage(driver);
     }
 
     public ManufacturerListPage getManufacturerListPage(WebDriver driver) {
         return new ManufacturerListPage(driver);
     }
 
-    public CreateManufacturerPage getCreateManufacturerPage(WebDriver driver) {
-        return new CreateManufacturerPage(driver);
+    public ManufacturerCreatePage getManufacturerCreatePage(WebDriver driver) {
+        return new ManufacturerCreatePage(driver);
+    }
+
+    public CustomerListPage getCustomerListPage(WebDriver driver) {
+        return new CustomerListPage(driver);
+    }
+
+    public CustomerEditPage getCustomerEditPage(WebDriver driver) {
+        return new CustomerEditPage(driver);
+    }
+
+    public CustomerAddressCreatePage getCustomerAddressCreatePage(WebDriver driver) {
+        return new CustomerAddressCreatePage(driver);
+    }
+
+    public CustomerCreatePage getCustomerCreatePage(WebDriver driver) {
+        return new CustomerCreatePage(driver);
     }
 }
