@@ -13,5 +13,4 @@ public abstract class AdminCommonUI {
     public static final String DYNAMIC_MULTI_SELECT_ITEM = "xpath=//ul[@id='%s']//li[@class='k-item' and text()='%s']";
     public static final String DYNAMIC_BUTTON_BY_NAME = "xpath=//button[@name='%s']";
     public static final String SUCCESS_ALERT = "xpath=//div[contains(@class, 'alert-success')]";
-    public static final String MOD_SWITCH_BUTTON = "css=span.onoffswitch-switch";
 }

@@ -93,7 +93,7 @@ public class Edit extends BaseTest {
         editProductPage.clickToDynamicButtonByName(driver, saveButtonFieldName);
 
         getTest().log(Status.INFO, "TC_01_Update_Category_And_Tag_And_Available_Date - Step 08: Verify success alert is displayed");
-        Assert.assertTrue(editProductPage.isSuccessAlertDisplayed(driver));
+        Assert.assertTrue(editProductPage.isSuccessAlertDisplayed(driver, "The product has been updated successfully."));
         FunctionHelper.sleepInSeconds(5);
 
         getTest().log(Status.INFO, "TC_01_Update_Category_And_Tag_And_Available_Date - Step 09: Enter product sku = " + productSku);

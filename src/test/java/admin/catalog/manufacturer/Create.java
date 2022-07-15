@@ -26,7 +26,8 @@ public class Create extends BaseTest {
     CreateManufacturerPage createManufacturerPage;
 
     String manufacturerNameTextboxName, descriptionIframeName;
-    String manufacturerName, description, manufacturerPictureName;
+    String manufacturerName, description, picture;
+    String saveButtonFieldName, tableId;
 
     @Parameters({"adminSiteDashboardUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
     @BeforeClass
@@ -45,19 +46,22 @@ public class Create extends BaseTest {
 
         log.info("Pre Condition - Step 01: Navigate to manufacturer list page");
         manufacturerListPage = loginPage.redirectToManufacturerListPage(driver, "https://admin-demo.nopcommerce.com/Admin/Manufacturer/List");
-        FunctionHelper.sleepInSeconds(2);
+        FunctionHelper.sleepInSeconds(1);
 
         log.info("Pre Condition - Step 02: Click to 'Add New' button");
         createManufacturerPage = manufacturerListPage.clickToAddNewButton(driver);
+        FunctionHelper.sleepInSeconds(1);
 
         //field name
         manufacturerNameTextboxName = "Name";
         descriptionIframeName = "Description";
+        saveButtonFieldName = "save";
+        tableId = "manufacturers-grid";
 
         //test data
         manufacturerName = "Samsung" + DataFaker.generateRandomNumber();
         description = "Samsung is one of biggest phone manufacturing company";
-        manufacturerPictureName = "manufacturer-picture.jpg";
+        picture = "manufacturer-picture.jpg";
     }
 
 
@@ -66,7 +70,7 @@ public class Create extends BaseTest {
         startTest(method.getName(), "TC_01_Create_With_Advanced_Mod - Start test");
         getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 01: Click to Mod Switch Button to switch to advanced mode");
         createManufacturerPage.clickToModSwitchButton(driver);
-        FunctionHelper.sleepInSeconds(1);
+        FunctionHelper.sleepInSeconds(2);
 
         getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 02: Enter manufacturer name = " + manufacturerName);
         createManufacturerPage.inputToDynamicTextboxByNameAttribute(driver, manufacturerName, manufacturerNameTextboxName);
@@ -75,12 +79,27 @@ public class Create extends BaseTest {
         createManufacturerPage.inputToDescriptionIframe(driver, description, descriptionIframeName);
 
         getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 04: Upload manufacturer picture");
-        createManufacturerPage.uploadManufacturerPicture(driver, manufacturerPictureName);
+        createManufacturerPage.uploadManufacturerPicture(driver, picture);
+        FunctionHelper.sleepInSeconds(2);
+
+        getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 05: Verify that pictured upload successfully");
+        Assert.assertTrue(createManufacturerPage.isUploadPictureDisplayed(driver, picture));
+
+        getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 06: Click save button");
+        createManufacturerPage.clickToDynamicButtonByName(driver, saveButtonFieldName);
+        manufacturerListPage = AdminPageGeneratorManager.getAdminPageGeneratorManager().getManufacturerListPage(driver);
+
+        getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 07: Verify that alert message '\n" +
+                "The new manufacturer has been added successfully.\n' is displayed");
+        Assert.assertTrue(manufacturerListPage.isSuccessAlertDisplayed(driver, "The new manufacturer has been added successfully."));
+
+        getTest().log(Status.INFO, "TC_01_Create_With_Advanced_Mod - Step 08: Verify that new manufacturer has been added to table");
+        Assert.assertTrue(manufacturerListPage.isNewItemDisplayedInTable(driver, tableId, manufacturerName));
 
     }
 
-//    @AfterClass(alwaysRun = true)
-//    public void tearDown() {
-//        closeBrowserAndKillProcess();
-//    }
+    @AfterClass(alwaysRun = true)
+    public void tearDown() {
+        closeBrowserAndKillProcess();
+    }
 }

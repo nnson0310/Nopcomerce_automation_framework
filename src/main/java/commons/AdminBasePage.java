@@ -1,11 +1,14 @@
 package commons;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import page.interfaces.admin.AdminCommonUI;
 import utilities.FunctionHelper;
 
 public class AdminBasePage extends BasePage {
+
+    JavascriptExecutor jsExecutor;
 
     public boolean isContentHeaderDisplayed(WebDriver driver, String fieldName) {
         waitForElementVisible(driver, AdminCommonUI.CONTENT_HEADER, fieldName);
@@ -61,13 +64,14 @@ public class AdminBasePage extends BasePage {
         clickToElement(driver, AdminCommonUI.DYNAMIC_BUTTON_BY_NAME, buttonName);
     }
 
-    public boolean isSuccessAlertDisplayed(WebDriver driver) {
+    public boolean isSuccessAlertDisplayed(WebDriver driver, String message) {
         waitForElementVisible(driver, AdminCommonUI.SUCCESS_ALERT);
-        return isElementDisplayed(driver, AdminCommonUI.SUCCESS_ALERT);
+        String alertMessage = getElement(driver, AdminCommonUI.SUCCESS_ALERT).getText().replaceAll("[^A-Za-z.\\s]","").trim();
+        return isElementDisplayed(driver, AdminCommonUI.SUCCESS_ALERT) && alertMessage.equals(message);
     }
 
-    public void clickToModSwitchButton(WebDriver driver) {
-        waitForElementClickable(driver, AdminCommonUI.MOD_SWITCH_BUTTON);
-        clickToElement(driver, AdminCommonUI.MOD_SWITCH_BUTTON);
+    public boolean isNewItemDisplayedInTable(WebDriver driver, String tableId, String itemName) {
+        waitForElementVisible(driver, AdminCommonUI.SEARCH_RESULT_NAME_LABEL_TABLE_ROW, tableId, itemName);
+        return isElementDisplayed(driver, AdminCommonUI.SEARCH_RESULT_NAME_LABEL_TABLE_ROW, tableId, itemName);
     }
 }
