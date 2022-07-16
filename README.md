@@ -20,12 +20,8 @@ Important Note:
 ```sh
 mvn clean test 
 ```
-**Running with batch file**
-Click and runbatch file with server name
-
 #### Local running:
 Clone project and run through maven command line (or running with TestNG plugins).
-**Support server name** is: dev, testing, staging, product. Each server name is corresponding to each below domain:
 
 ### Cloud running:
 Only support running on https://www.browserstack.com. You can configure other platform (ex: Saucelabs, CrossBrowserTesting...) by setting credentials and url in GlobalConstants class. 
@@ -47,7 +43,7 @@ Configure setCloudCredentials.bat file and running before opening IDE.
 Support both real devices or docker grid selenium (recommend). Install docker desktop and running below command:
 ```sh
 cd project_location
-docker compose up -d 
+docker-compose up -d 
 ```
 ### To run pipeline in jenkins CI/CD
 Configure svm (github, gitlab...) credentials in jenkins system and replace git repo url in jenkinsFile.groovy
