@@ -73,6 +73,7 @@ public class Search extends BaseTest {
 
         getTest().log(Status.INFO, "TC_01_Search_With_Product_Name - Step 02: Click to Search button");
         productListPage.clickToDynamicButtonById(driver, searchButtonId);
+        FunctionHelper.sleepInSeconds(1);
 
         getTest().log(Status.INFO, "TC_01_Search_With_Product_Name - Step 03: Verify that only one product with name = " + productName + " is displayed as search result");
         Assert.assertTrue(productListPage.isSearchResultDisplayedCorrect(driver, tableId, productName, 1));
@@ -100,8 +101,8 @@ public class Search extends BaseTest {
         Assert.assertTrue(productListPage.isNoSearchResultMessageDisplayed(driver, "No data available in table"));
     }
 
-    @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        closeBrowserAndKillProcess();
-    }
+//    @AfterClass(alwaysRun = true)
+//    public void tearDown() {
+//        closeBrowserAndKillProcess();
+//    }
 }
