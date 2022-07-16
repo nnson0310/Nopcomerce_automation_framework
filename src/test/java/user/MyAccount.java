@@ -37,7 +37,7 @@ public class MyAccount extends BaseTest {
     String myProductReviewNavigation;
     Map<String, Integer> ratings;
 
-    @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
+    @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "os", "osVersion"})
     @BeforeClass
     public void setUp(
             String userSiteUrl,
@@ -46,10 +46,10 @@ public class MyAccount extends BaseTest {
             @Optional("local") String environmentName,
             @Optional("localhost") String ipAddress,
             @Optional("4444") String port,
-            @Optional("Windows 10") String platform,
-            Method method
+            @Optional("Windows") String os,
+            @Optional("10") String osVersion
     ) {
-        driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
+        driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, os, osVersion);
         userHomePage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
 
         //registration info

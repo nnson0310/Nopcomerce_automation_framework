@@ -8,6 +8,6 @@ public interface CloudCredentials extends Config {
     @Key("cloudUsername")
     String cloudUsername();
 
-    @Key("cloudPassword")
-    String cloudPassword();
+    @Key("cloudAutomateKey")
+    String cloudAutomateKey();
 }
