@@ -27,7 +27,7 @@ public class CompareList extends BaseTest {
     NotebookPage notebookPage;
     CompareListPage compareListPage;
 
-    @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
+    @Parameters({"userSiteUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "os", "osVersion"})
     @BeforeClass
     public void setUp(
             String userSiteUrl,
@@ -36,9 +36,10 @@ public class CompareList extends BaseTest {
             @Optional("local") String environmentName,
             @Optional("localhost") String ipAddress,
             @Optional("4444") String port,
-            @Optional("Windows 10") String platform
+            @Optional("Windows") String os,
+            @Optional("10") String osVersion
     ) {
-        driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
+        driver = getBrowserDriver(userSiteUrl, browserName, browserVersion, environmentName, ipAddress, port, os, osVersion);
         userHomePage = UserPageGeneratorManager.getUserPageGeneratorManager().getUserHomePage(driver);
 
         topMenu = "Computers";

@@ -27,7 +27,7 @@ public class Search extends BaseTest {
     String productNameFieldName, categoryDropdownFieldName, subCategoryCheckboxFieldName, manufacturerDropdownFieldName;
     String searchButtonId, tableId, pagingInfoId;
 
-    @Parameters({"adminSiteDashboardUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
+    @Parameters({"adminSiteDashboardUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "os", "osVersion"})
     @BeforeClass
     public void setUp(
             String dashboardUrl,
@@ -36,9 +36,10 @@ public class Search extends BaseTest {
             @Optional("local") String environmentName,
             @Optional("localhost") String ipAddress,
             @Optional("4444") String port,
-            @Optional("Windows 10") String platform
+            @Optional("Windows") String os,
+            @Optional("10") String osVersion
     ) {
-        driver = getBrowserDriver(dashboardUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
+        driver = getBrowserDriver(dashboardUrl, browserName, browserVersion, environmentName, ipAddress, port, os, osVersion);
         loginPage = AdminPageGeneratorManager.getAdminPageGeneratorManager().getLoginPage(driver);
         loginPage.setCookies(driver, PreCondition_Login.adminLoginCookies);
 

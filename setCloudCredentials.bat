@@ -1,0 +1,2 @@
+setx BROWSERSTACK_USERNAME "your_username"
+setx BROWSERSTACK_AUTOMATE_KEY "your_automate_key"

@@ -23,7 +23,7 @@ public class PreCondition_Login extends BaseTest {
 
     public static Set<Cookie> adminLoginCookies;
 
-    @Parameters({"adminSiteLoginUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "platform"})
+    @Parameters({"adminSiteLoginUrl", "browserName", "browserVersion", "environmentName", "ipAddress", "port", "os", "osVersion"})
     @BeforeTest
     public void setUp(
             String loginUrl,
@@ -32,9 +32,10 @@ public class PreCondition_Login extends BaseTest {
             @Optional("local") String environmentName,
             @Optional("localhost") String ipAddress,
             @Optional("4444") String port,
-            @Optional("Windows 10") String platform
+            @Optional("Windows") String os,
+            @Optional("10") String osVersion
     ) {
-        driver = getBrowserDriver(loginUrl, browserName, browserVersion, environmentName, ipAddress, port, platform);
+        driver = getBrowserDriver(loginUrl, browserName, browserVersion, environmentName, ipAddress, port, os, osVersion);
         loginPage = AdminPageGeneratorManager.getAdminPageGeneratorManager().getLoginPage(driver);
 
         log.info("Pre Condition - Login - Step 01: Click to login button");

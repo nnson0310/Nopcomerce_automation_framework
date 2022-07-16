@@ -14,22 +14,24 @@ public class CloudEnvFactory {
 
     WebDriver driver;
 
-    private String browserName, browserVersion, platform;
+    private String browserName, browserVersion, os, osVersion;
 
-    public CloudEnvFactory(String browserName, String browserVersion, String platform) {
+    public CloudEnvFactory(String browserName, String browserVersion, String os, String osVersion) {
         this.browserName = browserName;
-        this.platform = platform;
+        this.os = os;
         this.browserVersion = browserVersion;
+        this.osVersion = osVersion;
     }
 
     public WebDriver getDriver() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformName", platform);
-        capabilities.setCapability("browserName", browserName);
-        capabilities.setCapability("browserVersion", browserVersion);
-        Map<String, Object> sauceOptions = new HashMap<>();
-        sauceOptions.put("name", "Run on Saucelabs on " + platform + " and on " + browserName);
-        capabilities.setCapability("sauce:options", sauceOptions);
+        capabilities.setCapability("os", os);
+        capabilities.setCapability("os_version", osVersion);
+        capabilities.setCapability("browser", browserName);
+        capabilities.setCapability("browser_version", browserVersion);
+        capabilities.setCapability("project", "Nopcommerce automation framework");
+        capabilities.setCapability("build", "beta");
+        capabilities.setCapability("name", "Run on Browser Stack with os = " + os + " and browser = " + browserName);
 
         try {
             driver = new RemoteWebDriver(new URL(GlobalConstants.getGlobalConstants().getCloudUrl()), capabilities);

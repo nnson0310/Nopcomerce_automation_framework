@@ -36,14 +36,15 @@ public abstract class BaseTest {
             String environmentName,
             String ipAddress,
             String port,
-            String platform
+            String os,
+            String osVersion
     ) {
         switch(environmentName) {
             case "grid":
                 driver = new GridEnvFactory(browserName, ipAddress, port).getDriver();
                 break;
             case "cloud":
-                driver = new CloudEnvFactory(browserName, browserVersion, platform).getDriver();
+                driver = new CloudEnvFactory(browserName, browserVersion, os, osVersion).getDriver();
                 break;
             default:
                 driver = new LocalEnvFactory(browserName).getDriver();
