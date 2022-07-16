@@ -49,5 +49,9 @@ Support both real devices or docker grid selenium (recommend). Install docker de
 cd project_location
 docker compose up -d 
 ```
+### To run pipeline in jenkins CI/CD
+```sh
+Configure svm (github, gitlab...) credentials in jenkins system and replace git repo url in jenkinsFile.groovy
+```
 
 
